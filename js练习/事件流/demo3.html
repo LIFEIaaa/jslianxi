@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>添加删除信息</title>
+    <style>
+        table{
+            width: 600px;
+            height: auto;
+            margin: 0 auto;
+            text-align: center;
+            border: 1px solid #eee;
+            border-collapse: collapse;
+        }
+        td,th{
+            border-bottom: 1px solid #eee;
+            height: 30px;
+        }
+        thead{
+            background: #ccc;
+        }
+        .del{
+            color: red;
+            cursor: pointer;
+        }
+        .add{
+            cursor: pointer;
+        }
+        td input{
+            margin: 0;
+            padding: 0;
+            border: 0;
+            width: 100%;
+            height: 100%;
+            background: yellow;
+            text-align: center;
+        }
+        td,th{
+            width: 150px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="4" class="add">+</td>
+    </tr>
+    </tfoot>
+</table>
+</body>
+<script>
+    let tbody=document.querySelector("tbody");
+    //获取localStorage里的属性
+    function  getData() {
+        //三元表达式   JSON.parse把字符串对象转换为真正的对象
+        return localStorage.table?JSON.parse(localStorage.table):[];
+    }
+    //保存数据
+    function  saveData(data) {
+        //JSON.stringify()函数调用表达式   把数据转换为字符串 并保存到localStorage里
+        localStorage.table=JSON.stringify(data);
+    }
+    function  render() {
+        let data=getData();
+        let str="";
+        //遍历
+        data.forEach(function (obj,index) {
+            str+=`<tr id=${index}>
+<td class="name">${obj.name}</td>
+<td class="age">${obj.age}</td>
+<td class="sex">${obj.sex}</td>
+<td class="del">删除</td>
+</tr>`;
+        })
+        tbody.innerHTML=str;
+    }
+    render();
+
+    let add=document.querySelector(".add");
+    add.onclick=function () {
+        //保证每一次操作 获取的都是最新的数据
+        let data=getData();
+        //添加对象
+        data.push({name:"",age:"",sex:""});
+        //保存数据
+        saveData(data);
+        //渲染
+        render();
+    }
+    tbody.onclick=function (e) {
+        let  target=e.target;
+        if(target.className==="del"){
+            let data=getData();
+            let index=target.parentNode.id;
+            data.splice(index,1);  //删除
+            //保存
+            saveData(data);
+            //渲染
+            render();
+        }
+    };
+    tbody.ondblclick=function (e) {
+        let target=e.target;
+        if(target.className!=="del"){
+            let index=target.parentNode.id;                 // 行
+            let attr=target.className;              //列
+            let input=document.createElement("input");
+            let text=target.innerHTML;
+            target.innerHTML="";
+            input.value=text;
+            target.appendChild(input);
+            input.focus();
+            input.onblur=function () {
+                let val=this.value;
+                let data=getData();
+                data[index][attr]=val;
+                saveData(data);
+                render();
+            }
+        }
+    }
+
+    //获取我们需要操作的元素
+    //给add注册点击事件
+    //      在事件中创建一个tr
+    //      设置tr的内容
+    //      把tr放置到tbody中
+
+    //给tbody添加点击事件
+    //      获取目标事件源    e.target
+    //      判断是不是删除
+    //从tbody中删除他的父元素tr
+    // let del=document.querySelector(".del");
+    // let add=document.querySelector(".add");
+    // let tbody=document.querySelector("tbody");
+    // let tr=document.querySelector("tr");
+    // let td=document.querySelector("td");
+    // add.onclick=function () {
+    //     let newtr=document.createElement("tr");
+    //     newtr.className="tr";
+    //     newtr.innerHTML="<td></td><td></td><td></td><td class=\"del\">删除</td>"
+    //     tbody.appendChild(newtr);
+    // }
+    // tbody.onclick=function (e) {
+    //     let target=e.target;
+
+        //分界线 不要
+        // if(target.nodeName==="TD"){
+        //     if(confirm("确定删除吗")){
+        //     tbody.removeChild(target.parentNode);
+        //     }
+        // }
+
+        // if(target.classList.contains("del")){
+        //     tbody.removeChild(target.parentNode);
+        // }
+        //分界线不要
+
+    //     if(target.className==="del"){
+    //         tbody.removeChild(target.parentNode);
+    //     }
+    // }
+    //给tbody添加双击事件
+    //      获取目标事件源
+    //      判断是不是普通的td
+    //      创建一个input
+    //      把td原来的内容设置为input的value
+    //      把td原先的内容删掉
+    //      input添加失去焦点事件
+    //              获取input现在的值
+    //              把值设置为td的内容
+    // tbody.ondblclick=function (e) {
+    //     let target=e.target;
+    //     if(target.className!=="del"){
+    //         let newinput=document.createElement("input");
+    //         newinput.value=target.innerHTML;
+    //         target.innerHTML="";
+    //         target.appendChild(newinput);
+    //         newinput.focus();         //直接获得焦点
+    //         newinput.onblur=function () {
+    //             let val=this.value;
+    //             target.innerHTML=val;
+    //         }
+    //     }
+    // }
+</script>
+</html>

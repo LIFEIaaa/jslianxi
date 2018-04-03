@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .section {
+            font-size: 50px;
+            text-align: center;
+        }
+
+        .inner {
+            transition: all 1s;
+        }
+
+        .pagerbox {
+            width: 30px;
+            height: 150px;
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            margin-top: -75px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: space-around;
+        }
+
+        .pager {
+            width: 20px;
+            height: 20px;
+            background: #ccc;
+            border-radius: 50%;
+        }
+
+        .pager.active {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="inner">
+        <div class="section">1</div>
+        <div class="section">2</div>
+        <div class="section">3</div>
+        <div class="section">4</div>
+        <div class="section">5</div>
+    </div>
+    <div class="pagerbox">
+        <a href="#my" class="pager active"></a>
+        <a href="#skill" class="pager"></a>
+        <a href="#project" class="pager"></a>
+        <a href="#contact" class="pager"></a>
+        <a href="#e" class="pager"></a>
+    </div>
+</div>
+<script>
+    //history    pushState({},"","demo1.html")手动往历史记录里添加一条新地址
+    //                  replaceState({},"";"demo2.html")直接替换当前页面的地址
+    let sections = document.querySelectorAll(".section");
+    let inner = document.querySelector(".inner");
+    let pagers = document.querySelectorAll(".pager");
+    history.replaceState({index: 0}, "", "demo2.html#p1");
+    sections.forEach(function (ele, index) {
+        ele.style.height = window.innerHeight + "px";
+        ele.style.lineHeight = window.innerHeight + "px";
+    })
+    let obj = pagers[0];
+    let h = window.innerHeight;
+    let arr=["my","skill","project","contact","e"];
+    location.hash="#my";
+    window.onhashchange = function () {
+        let hash = location.hash;
+        // let index=hash.charAt(2)-1;
+        let index=arr.indexOf(hash.slice(1));
+        obj.classList.remove("active");
+        pagers[index].classList.add("active");
+        obj = pagers[index];
+        inner.style.marginTop = -h * index + "px";
+    }
+    let flag = true;
+    //滚轮滚动事件
+    inner.onwheel = function (e) {
+        if (flag) {
+            flag = false;
+            //deltaY   当前滚动的方向
+            let dir = e.deltaY > 0 ? "down" : "up";
+            let hash = location.hash;
+            let index = arr.indexOf(hash.slice(1));
+            let target;
+            if (dir === "down") {
+                //目标位置
+                target = arr[index + 1];
+            }else{
+                target = arr[index - 1];
+            }
+            if (target) {
+                location.hash = "#" + target;
+            }else{
+                flag=true;
+            }
+        }
+    }
+    inner.addEventListener("transitionend",function () {
+        flag=true;
+    })
+    // let obj=pagers[0];
+    // let h=window.innerHeight;
+    // pagers.forEach(function (ele,index) {
+    //     ele.onclick=function () {
+    //         obj.classList.remove("active");
+    //         ele.classList.add("active");
+    //         obj=ele;
+    //         inner.style.marginTop=-h*index+"px";
+    //         history.pushState({index:index},"","demo2.html#p"+(index+1));
+    //     }
+    // })
+    //window.onpopstate历史记录改变会触发onpopstate事件
+    // window.onpopstate=function () {
+    //     let index=history.state.index;
+    //     obj.classList.remove("active");
+    //     pagers[index].classList.add("active");
+    //     obj=pagers[index];
+    //     inner.style.marginTop=-h*index+"px";
+    // }
+</script>
+</body>
+</html>

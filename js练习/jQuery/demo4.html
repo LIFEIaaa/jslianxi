@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 600px;
+            height: 300px;
+            border:1px solid #000;
+            margin:0 auto;
+        }
+        .top{
+            width: 600px;
+            height: 50px;
+            background: #ccc;
+        }
+        .title{
+            width: 200px;
+            height: 50px;
+            float: left;
+            font-size: 20px;
+            color: red;
+            line-height: 50px;
+            text-align: center;
+        }
+        .title.active{
+            background: pink;
+            color: #fff;
+        }
+        .bottom{
+            width: 600px;
+            height: 250px;
+            position: relative;
+        }
+        .content{
+            width: 600px;
+            height: 250px;
+            position: absolute;
+            left: 200px;
+            top:0;
+        }
+        .content.active{
+            z-index: 9;
+        }
+        .content img{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="top">
+        <div class="title active" >1</div>
+        <div class="title">2</div>
+        <div class="title">3</div>
+    </div>
+    <div class="bottom">
+        <div class="content active"><img src="touxiang.JPG" alt=""></div>
+        <div class="content"><img src="shouji.png" alt=""></div>
+        <div class="content"><img src="touxiang.JPG" alt=""></div>
+    </div>
+</div>
+<div class="demo">div</div>
+<div class="demo">div</div>
+<div class="demo">div</div>
+<script src="jquery-3.3.1.min.js"></script>
+<script>
+    $(".title").click(function () {
+        //把原生对象转换为jquery对象     $(原生对象)
+        //1
+        // $(".title").removeClass("active");
+        // $(this).addClass("active");
+        //2
+        // $(".title").removeClass("active").filter(this).addClass("active");
+        //3
+        // $(this).addClass("active").siblings(".active").removeClass("active");
+        //4
+        $(".title.active").removeClass("active").parent().find(this).addClass("active");
+        var index=$(this).index();
+        // alert(index)
+        $(".content").removeClass("active").eq(index).addClass("active");
+    })
+
+    //innerHTML ===>html()
+    // console.log($(".demo").html());
+  //  $(".demo").html("1111");
+    $(".demo").html(function (index,oldVal) {
+        return oldVal+(index+1);
+    })
+    // style    getComputedStyle   ===>           css()
+    // console.log($(".demo").css("width"));
+    $(".demo").css("background","red");
+    // $(".demo").css("width",300);
+    $(".demo").css("width",function (index,oldVal) {
+        return (index+1)*100;
+    })
+    $(".demo").css({
+        color:"#fff",
+        fontSize:"16px",
+        textAlign:"center",
+        lineHeight:"100px"
+    })
+    //添加/移除类名
+    //classList        className    ===>addClass()           removeClass()     toggleClass()
+    $(".demo").addClass(function (index,oldVal) {
+        return "test"+(index+1);
+    })
+    $(".demo").removeClass(function (index,oldVal) {
+        return "test"+(index+1);
+    })
+</script>
+</body>
+</html>

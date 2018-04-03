@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>参数</title>
+    <script>
+        function fn(rows) {
+            for (var i = 0; i < rows; i++) {
+                for (var j = 0; j <= rows - i; j++) {
+                    document.write("&nbsp;");
+                }
+                for (var j = 0; j <= i; j++) {
+                    document.write("*&nbsp;");
+                }
+                document.write("<br>");
+            }
+        }
+
+        fn(3);
+        fn(6);
+        fn(10);
+
+
+        function table(rows, cols, color) {
+            // if(rows===undefined){
+            //     rows=10;
+            // }
+            // if(cols===undefined){
+            //     cols=10;
+            // }
+            // if(color===undefined){
+            //     color="red";
+            // }
+
+            //给参数设置默认值          简洁
+            rows=rows||10;
+            cols=cols||10;
+            color=color||"red";
+            document.write("<table border='1' align='center'>");
+            for (var i = 0; i < rows; i++) {
+                if (i % 2 === 0) {
+                    document.write(`<tr bgcolor=${color}>`);
+                } else {
+                    document.write("<tr>");
+                }
+                for (var j = 0; j < cols; j++) {
+                    document.write(`<td>第${i + 1}行 第${j + 1}列</td>`);
+                }
+                document.write("</tr>");
+            }
+            document.write("</table>");
+        }
+        table(4,7,"skyblue");
+        table(8,9,"green");
+        table(6,8,"pink");
+        table();
+        // function  fun1(a,b) {
+            // alert(a);
+            // alert(b);
+
+
+            // console.log(arguments);
+            // console.log(arguments[0]);
+            // console.log(arguments[1]);
+            // console.log(arguments[2]);
+            // console.log(arguments[3]);
+            // console.log(arguments[4]);
+            // console.log(arguments.length);
+
+            //遍历  ：把里边每个数都看一下
+        //     for(var i=0;i<arguments.length;i++){
+        //         console.log(arguments[i]);
+        //         alert(arguments[i]);
+        //     }
+        // }
+        // fun1(11,22,33,44,55,66,77,88);
+        // console.log(1,2,3,4,5,6,7,8);
+
+
+        //需要一个函数  sum（1,2,3，4,5,6）   sum（1,2）
+        function  sum() {
+            var he=0;
+            for(var i=0;i<arguments.length;i++){
+                he+=arguments[i];
+            }
+            // console.log(he);
+            return he;                 //return语句之后的代码会被自动忽略掉
+        }
+
+        sum(1,2,3,4);
+        sum(1,2,3);
+        sum(1,2);
+        var result=sum(10,10);
+        console.log(result);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

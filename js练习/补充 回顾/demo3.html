@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    let url="http://www.abc.com:80/aa/bb/cc/index.html?user=123&pass=123#top";
+    //写一个函数  把url 处理为一个对象
+    // let obj={
+    //     ptotoco:"http";
+    //   hostname:"ww.abc.com";
+    //     port:"80";
+    //     pathname:"?user=123&pass=123";
+    //  hash:"#top";
+    // }
+    function  parseURL(url) {
+        // let protocol=/^.*(?=:\/\/)/.exec(url)[0];
+        let protocol=/^[a-z]+/.exec(url)[0];
+        let hostname=/[a-z0-9\-]+(\.[a-z0-9\-]+)+/.exec(url)[0];
+        let port=/:\d+/.exec(url)[0];
+        let pathname=/(\/[a-z0-9]+)+\/[a-z0-9\.]+/.exec(url)[0];
+        let search=/\?[a-z0-9&=]+/.exec(url)[0];
+        let hash=/#.*$/.exec(url)[0];
+        return {protocol,hostname,port,pathname,search,hash};
+    }
+    console.log(parseURL(url));
+</script>
+</body>
+</html>

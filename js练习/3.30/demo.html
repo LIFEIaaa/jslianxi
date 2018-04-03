@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>跨域请求</title>
+</head>
+<body>
+<input type="button" value="get">
+<script src="http://localhost/3.30/jquery-3.3.1.min.js"></script>
+<!--<script>-->
+<!--function fn(r) {-->
+<!--console.log(r);-->
+<!--}-->
+<!--</script>-->
+<!--<script src="http://localhost/3.30/select.php"></script>-->
+<script>
+    // $.ajax({
+    //     url:"http://localhost/3.30/select.php",
+    //     success:function (r) {
+    //         console.log(r);
+    //     }
+    // })
+
+    function jsonp(settings) {
+        var url = settings.url;
+        var jsonp = settings.jsonp || "callback";
+        var jsonpCallback = settings.jsonpCallback || "j" + new Date().getTime() + "_" + Math.floor(Math.random() * 1000);
+        var success = settings.success;
+        url += "?" + jsonp + "=" + jsonpCallback;
+        var script = document.createElement("script");
+        script.src = url;
+        document.head.appendChild(script);
+        window[jsonpCallback] = function (r) {
+            success(r);
+            document.head.removeChild(script);
+            delete window[jsonpCallback];
+        }
+    }
+
+    $("input").click(function () {
+        jsonp({
+            url: "http://localhost/3.30/select.php",
+            success: function (r) {
+                console.log(r);
+            }
+        });
+        //在jquery中  把jsonp请求数据这种方式 也封装到$.ajax函数中了 但是jsonp和ajax是没关系的
+        // $.ajax({
+        //     url:"http://localhost/3.30/select.php",
+        //     dataType:"jsonp",
+        //     jsonp:"callback",
+        //     success:function (r) {
+        //         console.log(r);
+        //     }
+        // })
+    })
+</script>
+</body>
+</html>

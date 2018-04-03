@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //过滤      0-100范围
+        // var arr = [95, 45, 67, 34, 56, 78, -12, 577];
+        // var newarr = [];
+        // var n=0;
+        //遍历 枚举
+        // for (var i = 0; i < arr.length; i++) {
+        //     if (arr[i] >= 0 && arr[i] <= 100) {
+        //         newarr[n]=arr[i];
+        //         n++;
+        //     }
+        // }
+        // console.log(newarr);
+
+        //输出不及格的成绩
+        var arr2 = [10, 20, 30, 45, 60, 70, 90, 87, 65];
+        var n = 0;
+        var newarr = [];
+        for (var i = 0; i < arr2.length; i++) {
+            if (arr2[i] < 60) {
+                newarr[n] = arr2[i];
+                n++;
+            }
+        }
+        console.log(newarr);
+        console.log(newarr.length);
+
+
+        //数组查找：找到当前成绩的最大值
+        var arr3 = [10, 20, 30, 45, 60, 70, 90, 87, 65];
+        var max = 0;
+        for (var i = 0; i < arr3.length; i++) {
+            if (arr3[i] > max) {
+                max = arr3[i];
+                // n++;
+            }
+        }
+        console.log(max);
+
+
+        //在数组基础上进行判断
+        var arr4 = [10, 20, 30, 45, 60, 70, 90, 87, 65];
+        var fail = false;
+        for (var i = 0; i < arr4.length; i++) {
+            if (arr4[i] < 60) {
+                fail = true;
+            }
+        }
+        console.log(fail);
+
+        //判断是不是每个人都及格
+        var success = true;
+        for (var i = 0; i < arr4.length; i++) {
+            if (arr4[i] < 60) {
+                success = false;
+            }
+        }
+        console.log(success);
+
+
+        //排序
+        var arr5 = [10, 20, 30, 45, 60, 70, 90, 87, 65];
+        //var temp=arr5[0];          //先计算，再完成赋值
+        //arr5[0]=arr5[1];
+        //arr5[1]=temp;
+        for (var i = 0; i < arr5.length; i++) {
+            for (var j = i; j < arr5.length; j++) {
+                if (arr5[i] < arr5[j]) {
+                    var temp = arr5[i];
+                    arr5[i] = arr5[j];
+                    arr5[j] = temp;
+                }
+            }
+        }
+        console.log(arr5);
+
+        //排序
+        var arr6 = [10, 20, 30, 45, 60, 70, 90, 87, 65];
+        for (var i = 0; i < arr6.length; i++) {
+            for (var j = 0; j < arr6.length - 1 - i; j++) {
+                if (arr6[j] < arr6[j + 1]) {
+                    var temp = arr6[j];
+                    arr6[j] = arr6[j + 1];
+                    arr6[j + 1] = temp;
+                }
+            }
+        }
+        console.log(arr6);
+
+
+        //去重：去除多余的重复值
+        var fruit = ["apple", "apple", "banana", "orange", "orange"];
+        var newfruit = [];
+        var n = 0;
+        for (var i = 0; i < fruit.length; i++) {
+            if (!check(newfruit, fruit[i])) {
+                newfruit[n] = fruit[i];
+                n++;
+            }
+        }
+        function check(arr, val) {
+            var state = false;
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] === val) {
+                    state = true;
+                }
+            }
+            return state;
+        }
+        console.log(newfruit);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

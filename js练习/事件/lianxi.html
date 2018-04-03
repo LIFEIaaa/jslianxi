@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background:green;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+</body>
+<script>
+    let box=document.querySelector(".box");
+    box.onmousedown=function (e) {
+        this.style.background="yellow";
+        let ox=e.offsetX;
+        let oy=e.offsetY;
+        document.onmousemove=function (e) {
+            let cx=e.clientX;
+            let cy=e.clientY;
+            box.style.left=cx-ox+"px";
+            box.style.top=cy-oy+"px";
+        }
+        box.onmouseup=function () {
+            this.style.background="";
+            document.onmousemove=null;
+        }
+    }
+</script>
+</html>

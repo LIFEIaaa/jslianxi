@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .demo{
+            width: 100px;
+            height: 100px;
+            background: yellow;
+            transform: rotate(30deg);
+        }
+    </style>
+</head>
+<body>
+<div class="demo"></div>
+<script src="jquery-3.3.1.min.js"></script>
+<script>
+    $(".demo").click(function () {
+        // $(this).css({rotate:90})
+        // $(this).css("rotate","+=30")
+        $(this).transition({rotate:360},1000)
+    })
+</script>
+</body>
+</html>

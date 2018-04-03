@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .demo {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            border: 10px solid #000;
+            padding: 10px;
+            /*display: none;*/
+            /*opacity: 0;*/
+            margin: 0 auto;
+        }
+
+        .box {
+            width: 500px;
+            height: 600px;
+            border: 1px solid #000;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .bigbox {
+            width: 700px;
+            height: 700px;
+            border: 1px solid #f33;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .out {
+            width: 300px;
+            height: 100px;
+            background-color: #f33;
+            margin: 0 auto;
+            overflow: auto;
+            /*overflow: scroll;*/
+        }
+        .inner {
+            width: 100px;
+            height: 300px;
+            background: blue;
+        }
+        .totop{
+            width: 30px;
+            height: 30px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="bigbox">
+    <div class="box">
+        <div class="demo"></div>
+    </div>
+</div>
+<div class="out">
+    <div class="inner"></div>
+</div>
+<div class="totop"></div>
+</body>
+<script>
+    let div = document.querySelector(".demo");
+    //div.innerHTML
+    //div.id
+    //div.className
+    //div.classList              add()   remove()
+    //style     width     height
+
+    //div.queryEventListener()
+    //div.querySelector()
+    //div.querySelectorAll()
+
+    //onclick
+    //onmouseenter
+    //onmouseleave
+    //addEventListener
+
+    //获取计算后的样式
+    console.log(getComputedStyle(div).zIndex);
+
+    //当前元素在页面中实际所占的宽度和高度
+    console.log(div.offsetWidth);
+    console.log(div.offsetHeight);
+
+    //offsetLeft    offsetTop
+    //所有的前辈元素都没有定位属性，相对于文档位置
+    //如果前辈元素有定位属性，相对于离当前元素最近的有定位属性的前辈元素的位置
+    console.log(div.offsetLeft);
+    console.log(div.offsetTop);
+
+    //scrollTop  scrollLeft
+    //scrollTop
+    // let out = document.querySelector(".out");
+    // document.body.onclick = function () {
+    //     console.log(out.scrollTop);
+    // }
+
+    // console.log(document.documentElement.scrollTop);
+    let totop=document.querySelector(".totop");
+    totop.onclick=function(){
+        document.documentElement.scrollTop=0;
+    }
+</script>
+</html>

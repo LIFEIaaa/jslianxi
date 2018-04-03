@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>返回顶部效果</title>
+    <style>
+        body {
+            height: 3000px;
+        }
+        .totop {
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            background: red;
+            position: fixed;
+            right: 100px;
+            bottom: 100px;
+        }
+        .topbar {
+            position: fixed;
+            width: 100%;
+            height: 40px;
+            background: yellow;
+            left: 0;
+            top: 0;
+            display: none;
+        }
+        .leftbar {
+            width: 100px;
+            height: 400px;
+            background: pink;
+            position: fixed;
+            left: 50%;
+            bottom: 100px;
+            margin-left: -695px;
+            display: none;
+        }
+        .container {
+            width: 1190px;
+            height: 500px;
+            margin: 30px auto;
+            border: 1px solid #000;
+            text-align: center;
+            line-height: 500px;
+            font-size: 50px;
+        }
+        .top {
+            height: 800px;
+        }
+
+        .tips {
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 36px;
+        }
+
+        .tips:hover {
+            background: yellow;
+            color: #fff;
+        }
+        .tips.active{
+            background: green;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<img src="导航.png" alt="">
+<div class="totop"></div>
+<div class="topbar"></div>
+<div class="leftbar">
+    <div class="tips active">1</div>
+    <div class="tips">2</div>
+    <div class="tips">3</div>
+    <div class="tips">4</div>
+    <div class="tips">5</div>
+    <div class="tips">6</div>
+    <div class="tips">7</div>
+    <div class="tips">8</div>
+</div>
+<div class="top"></div>
+<div class="container">1</div>
+<div class="container">2</div>
+<div class="container">3</div>
+<div class="container">4</div>
+<div class="container">5</div>
+<div class="container">6</div>
+<div class="container">7</div>
+<div class="container">8</div>
+<div class="top"></div>
+</body>
+<script>
+    //返回顶部
+    let totop = document.querySelector(".totop");
+    totop.onclick = function () {
+        // document.documentElement.scrollTop="0";
+        let st = document.documentElement.scrollTop;
+        let t = setInterval(function () {
+            st -= 200;
+            if (st < 0) {
+                st = 0;
+                clearInterval(t);
+            }
+            document.documentElement.scrollTop = st;
+        }, 25)
+    }
+    //onscroll元素或者浏览器窗口发生滚动的时候触发的事件
+    let topbar = document.querySelector(".topbar");
+    let leftbar = document.querySelector(".leftbar");
+    window.onscroll = function () {
+        let st = document.documentElement.scrollTop;
+        if (st > 700) {
+            topbar.style.display = "block";
+        } else {
+            topbar.style.display = "none";
+        }
+        if (st > 900) {
+            leftbar.style.display = "block";
+        } else {
+            leftbar.style.display = "none";
+        }
+    }
+
+    //选项卡效果
+    {
+        let tips = document.querySelectorAll(".tips");
+        let containers = document.querySelectorAll(".container");
+        tips.forEach(function (ele, index) {
+            ele.onclick = function () {
+                let ot = containers[index].offsetTop-50;
+                // document.documentElement.scrollTop=ot;
+                let now=document.documentElement.scrollTop;
+                let speed=(ot-now)/8;
+                let time=0;
+                let t=setInterval(function(){
+                    time+=25;
+                    now+=speed;
+                    if(time===200){
+                        clearInterval(t);
+                    }
+                    document.documentElement.scrollTop=now;
+                },25)
+            }
+        });
+
+        //不用加on
+        window.addEventListener("scroll",function(){
+            let st=document.documentElement.scrollTop;
+            for(let i=0;i<containers.length;i++){
+                if(st>containers[i].offsetTop-50){
+                    for(let i=0;i<tips.length;i++){
+                        tips[i].classList.remove("active");
+                    }
+                    tips[i].classList.add("active");
+                }
+            }
+        })
+    }
+</script>
+</html>

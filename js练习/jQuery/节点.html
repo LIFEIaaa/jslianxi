@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script>
+        $(function () {
+            console.log($("div"));
+        })
+    </script>
+</head>
+<body>
+<!--<div>-->
+<!--<span></span>-->
+<!--</div>-->
+<!--<p></p>-->
+
+<!--<div>-->
+<!--<span>-->
+<!--<p>1</p>-->
+<!--</span>-->
+<!--</div>-->
+<!--<div>-->
+<!--<span>-->
+<!--<p>2</p>-->
+<!--</span>-->
+<!--</div>-->
+<!--<div>-->
+<!--<span>-->
+<!--<p>3</p>-->
+<!--</span>-->
+<!--</div>-->
+<!--<div class="demo"></div>-->
+<!--<div>-->
+<!--<p></p>-->
+<!--</div>-->
+<!--<p></p>-->
+
+<section>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+</section>
+<!--<p></p>-->
+<!--<p></p>-->
+<!--<p></p>-->
+<script src="jquery-3.3.1.min.js"></script>
+<script>
+    //节点
+    //核心
+    // console.log($===jQuery);
+    // let div=$("div");
+    // console.log($("p",div));
+
+    //创建div元素
+    // console.log($("<div></div>"));
+    // console.log($("<div>"));
+    // console.log($("<div class='0ne'>"));
+
+    // $(function () {
+    //
+    // })
+    // $(document).load(function () {});
+    // window.onload=function () {}
+
+    //document.creatElement
+    //document.creatElementFragment
+    //appendChild
+    //insertBefore
+    //replaceChild
+    //removeChild
+    //cloneNode
+
+    //内部插入
+    //append    appendTo      prepend      prependTo
+    // let p=$("p");
+    // let p=document.querySelector("p");
+    // $("div").append(p);
+    //
+    // $("div").append("<p>123</p>");
+
+    //html片段    原生对象   JQuery对象
+    // $("div").html(function (index,val) {                        //替换
+    //     return "<span></span><p>"+(index+1)+"</p>";
+    // })
+
+    // $("div").append(function (index,val) {                   //在后面追加
+    //     return "<p>"+(index+1)+"</p>";
+    // })
+
+    // $("div").prepend(function (index,val) {                   //在前面追加
+    //     return "<p>"+(index+1)+"</p>";
+    // })
+
+    // let obj=$("<div>");   //创建div
+
+    $("<div>").appendTo(".demo");       //把div标签插入到.demo 里
+
+    //外部插入
+    //after()
+    // $("div").after("<span></span>");
+    // $("div").after($("p"));     //把所有p标签插入到每个div标签的后面
+    $("div").insertAfter("p");      //把所有div标签插入到每个p标签的后面
+
+    //包裹wrap()    外部添加包裹
+    $("div").wrap("<section></section>");      //给每一个匹配元素添加到包裹里
+    //$("div").wrapAll("<section></section>");      //给所有的匹配元素添加到一个包裹里
+    $("div").unwrap();      //取消包裹      不需要传递参数
+
+    //wrapinner()        包裹元素内部的元素
+    // $("div").wrapInner("<b></b>");
+
+    //replaceWith()       替换
+    $("div").replaceWith("<p></p>");         //把div替换为p标签
+
+    //replaceAll()
+  //  $("<p></p>").replaceAll("div");       //把div替换为p标签
+
+    //empty()
+    //$("section").empty();       //删除所有子元素
+
+    //remove()       detach()  删除
+    // $("section").remove();
+    // $("section").detach();
+
+    //clone()克隆     默认克隆所有子元素
+    $("section").clone().appendTo("body");
+</script>
+</body>
+</html>

@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--<link rel="stylesheet" href="css/index.css">-->
+    <style>
+        .banner1{
+            width: 1226px;
+            height: 400px;
+            margin: 0 auto;
+            background: #f2f2f2;
+            position: relative;
+        }
+        .sidebar{
+            width: 234px;
+            height: 400px;
+            background: pink;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .label{
+            width: 100%;
+            height: 50px;
+            line-height: 30px;
+            text-align: center;
+        }
+        .label:hover{
+            background: #f60;
+        }
+        .menu{
+            width: 500px;
+            height: 400px;
+            background: red;
+            position: absolute;
+            left: 234px;
+            top: 0;
+            font-size: 36px;
+            color: #fff;
+            display: none;
+            line-height: 400px;
+        }
+
+        .box{
+            width: 1000px;
+            height:auto;
+            border: 1px solid #000;
+            margin: 0 auto;
+        }
+        .top{
+            width: 1000px;
+            height: 50px;
+            background: blue;
+        }
+        .bottom{
+            width: 1000px;
+            height: 0;
+            background: pink;
+            overflow: hidden;
+            /*transition: all 1s;*/
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            /* background: #f2f2f2; */
+        }
+        #banner{
+            width: 1226px;
+            height: 460px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .imgBox{
+            width: 1226px;
+            height: 460px;
+            position: relative;
+        }
+        .imgBox li{
+            width: 1226px;
+            height: 460px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transition: all 1s ease-in;
+            opacity: 0;
+        }
+        .imgBox li.active{
+            z-index: 9;
+            opacity: 1;
+        }
+        .pagerbox{
+            position: absolute;
+            width: 150px;
+            height: 10px;
+            right: 30px;
+            bottom: 30px;
+            z-index: 999;
+        }
+        .pagerbox li{
+            width: 6px;
+            height: 6px;
+            margin: 0 10px;
+            background: #ccc;
+            float: left;
+            border-radius: 50%;
+            border: 2px solid #5e5e5e;
+            cursor: pointer;
+            transition: all 1s;
+            opacity: 0.5;
+        }
+        .pagerbox li.active{
+            background: yellow;
+        }
+        .pagerbox li:hover{
+            background: yellow;
+        }
+        .prev,.next{
+            width: 41px;
+            height: 69px;
+            position: absolute;
+            top: 50%;
+            margin-top: -35px;
+            z-index: 9999;
+            line-height: 69px;
+            text-align: center;
+            font-size: 40px;
+            color: #eee;
+            cursor: pointer;
+            user-select: none;
+        }
+        .prev{
+            left: 234px;
+        }
+        .prev:hover,.next:hover{
+            background: rgba(0, 0, 0, 0.2);
+        }
+        .next{
+            right: 0;
+        }
+
+        .star{
+            width: 1226px;
+            height: 398px;
+            margin-top:58px;
+            background-color: #FFFFFF;
+            margin: 0 auto;
+        }
+        .star_top{
+            width: 1226px;
+            height: 58px;
+        }
+        .star_top h1{
+            color: #363636;
+            font-size: 21px;
+            line-height: 58px;
+            float: left;
+            font-weight: 400;
+        }
+        .star_btn{
+            width: 69px;
+            height: 22px;
+            margin-top: 17px;
+            background-color: #FFFFFF;
+            float: right;
+            border: 1px solid #E0E0E0;
+        }
+        .star_btn div{
+            width: 34px;
+            height: 22px;
+            text-align: center;
+            line-height: 22px;
+            float: left;
+            user-select: none;
+        }
+        .star_btn1{
+            border-right: 1px solid #E0E0E0;
+            color: #B0B0B5;
+            cursor: pointer;
+        }
+        .star_btn1:hover,.star_btn2:hover{
+            color: #ff6700;
+        }
+        .star_btn div.disable{
+            color: #333;
+        }
+        .star_btn2{
+            color: #E0E2E6;
+            cursor: pointer;
+        }
+        .star_bottom{
+            width: 1226px;
+            height: 340px;
+            background-color: #ffffff;
+        }
+        .buy-time{
+            position: absolute;
+            z-index: 999;
+            float: left;
+            width: 234px;
+            height: 339px;
+            background: #FAFAFA;
+            float: left;
+            margin-right: 14px;
+            border-top: 1px solid #FFAC12;
+        }
+        .buy-time img{
+            padding-top: 39px;
+            width: 166px;
+            height: 166px;
+            margin: 0 auto;
+            display: block;
+            cursor:pointer;
+        }
+        .star_item{
+            width: 234px;
+            height: 300px;
+            background-color: #FAFAFA;
+            border-top: 1px solid #FFAC12;
+            padding-top: 39px;
+            float: left;
+            margin-right: 14px;
+        }
+        .buy-list{
+            width: 978px;
+            height: 340px;
+            float: right;
+            overflow: hidden;
+        }
+        .buy-inner{
+            width: 3000px;
+            height: 340px;
+            /*transition: all 1s;*/
+        }
+        .star_item1{
+            border-top-color: #00c0a5;
+        }
+        .star_item2{
+            border-top-color: #e53c38;
+        }
+        .star_item3{
+            border-top-color: #2196f3;
+        }
+        .star_item4{
+            border-top-color: #83c450;
+        }
+        .star_item img{
+            width: 166px;
+            height: 166px;
+            margin: 0 auto;
+            display: block;
+            cursor:pointer;
+        }
+        .star_bottom h1{
+            text-align: center;
+            font-size: 14px;
+            color: #212121;
+            font-weight: 400;
+            margin-top: 22px;
+            cursor:pointer;
+        }
+        .star_bottom h2{
+            text-align: center;
+            font-size: 12px;
+            color: #b0b0b0;
+            font-weight: normal;
+            margin-top: 3px;
+        }
+        .star_bottom h3{
+            text-align: center;
+            font-size: 14px;
+            color: #ff6700;
+            font-weight: normal;
+            margin-top: 12px;
+        }
+
+
+        .content{
+            width: 1226px;
+            height: 400px;
+            margin: 0 auto;
+            border: 1px solid #000;
+        }
+        .content-top{
+            width: 100%;
+            height: 30px;
+        }
+        .content-top .type{
+            float: left;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            margin: 0 20px;
+            transition: all 0.5s;
+            cursor: pointer;
+        }
+        .content-top .active{
+            color: #f60;
+            border-bottom: 1px solid #f60;
+            height: 29px;
+        }
+        .content-bottom{
+            width: 1226px;
+            height: 370px;
+            position: relative;
+        }
+        .content-bottom .goodslist{
+            width: 1226px;
+            height: 370px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 40px;
+            text-align: center;
+            background: #ccc;
+            line-height: 370px;
+        }
+        .goodslist.active{
+            z-index: 9;
+        }
+
+
+
+        .gao4{
+            width: 1226px;
+            height: 500px;
+            margin: 0 auto;
+        }
+        .jiadian_top h3{
+            margin-top: 21px;
+            color: #333;
+            font-size: 21px;
+            line-height: 58px;
+            font-weight: 400;
+            float: left;
+        }
+        .jiadian_top1{
+            width: 1226px;
+            height: 80px;
+            margin: 0 auto;
+        }
+        .gao5{
+            width: 1226px;
+        }
+        .jiadian_right1{
+            width: 1226px;
+        }
+
+        .jiadian_item3{
+            margin-left: 0;
+        }
+        .gao3_item1{
+            margin-right: 14px;
+        }
+        .gao5_item{
+            width: 296px;
+            height: 419px;
+            background-color: white;
+            float: left;
+            border-top: 1px solid #FFAC12;
+            position: relative;
+            overflow: hidden;
+        }
+        .gao5_item:hover .neirong_btn{
+            visibility: visible;
+            cursor: pointer;
+        }
+        .inner{
+            width: 1000px;
+            height: 420px;
+            background: plum;
+            transition: all .5s;
+        }
+        .content-3{
+            width: 296px;
+            height: 420px;
+            background: pink;
+            float: left;
+            z-index: 9;
+        }
+
+        .gao5_item span{
+            padding-top: 51px;
+            color: #FFAC12;
+            margin: 0 auto;
+            display: block;
+            text-align: center;
+        }
+        .gao5_item a{
+            font-size: 20px;
+            padding-top: 25px;
+            color: #363636;
+            margin: 0 auto;
+            display: block;
+            text-align: center;
+        }
+        .biaoqian p{
+            font-size: 12px;
+            color: #b0b0b0;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .gao5_item p{
+            padding-top: 11px;
+            color: #B0B0B0;
+            margin: 0 auto;
+            display: block;
+            text-align: center;
+        }
+        .gao5_item h1{
+            padding-top: 20px;
+            font-size: 12px;
+            color: #363636;
+            margin: 0 auto;
+            display: block;
+            text-align: center;
+            cursor: pointer;
+        }
+        .gao5_item img{
+            width: 216px;
+            height: 154px;
+            margin: 0 auto;
+            display: block;
+            cursor: pointer;
+            padding-top: 27px;
+        }
+        .lbd{
+            width: 296px;
+            height: 20px;
+            position: absolute;
+            bottom: 0;
+            left: 115px;
+            z-index: 999;
+        }
+        .lbd1{
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #B0B0B0;
+            margin: 0 7px;
+            cursor: pointer;
+            float: left;
+        }
+        .lbd .active{
+            background-color: #ff6700;
+        }
+        .neirong_btn{
+            width: 20px;
+            height: 24px;
+            padding: 12px 0;
+            line-height: 24px;
+            text-align: center;
+            background-color: #E2E2E2;
+            font-size: 18px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            cursor: pointer;
+            display: block;
+            z-index: 100;
+            color: #fff;
+            visibility: hidden;
+            /*transition: all .5s;*/
+        }
+        .neirong_lbtn{
+            left: 0;
+            visibility: hidden;
+        }
+        .neirong_rbtn{
+            right: 0;
+            visibility: hidden;
+        }
+        .neirong_btn:hover{
+            background-color: #b0b0b0;
+            visibility: hidden;
+        }
+        .juli img{
+            padding-top: 84px;
+        }
+        .juli1 img{
+            padding-top: 89px;
+        }
+        .gao5_item1{
+            border-top-color: #83C450;
+        }
+        .gao5_item2{
+            border-top-color: #E53C38;
+        }
+        .gao5_item3{
+            border-top-color: #2196F3;
+        }
+    </style>
+</head>
+<body>
+<div id="banner">
+    <ul class="imgBox">
+        <li class="active"><img src="img/banner1.jpg" alt=""></li>
+        <li><img src="img/banner2.jpg" alt=""></li>
+        <li><img src="img/banner3.jpg" alt=""></li>
+        <li><img src="img/banner4.jpg" alt=""></li>
+        <li><img src="img/banner5.jpg" alt=""></li>
+    </ul>
+    <ul class="pagerbox">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <div class="prev">&lt;</div>
+    <div class="next">&gt;</div>
+</div>
+<!--明星单品开始-->
+<section class="star">
+    <div class="star_top">
+        <h1 class="star_title">小米明星单品</h1>
+        <div class="star_btn">
+            <div class="star_btn1 disable">&lt;</div>
+            <div class="star_btn2">&gt;</div>
+        </div>
+    </div>
+    <div class="star_bottom">
+        <div class=" buy-time">
+            <img src="img/dp3.png" alt="">
+            <h1>小米手环 2</h1>
+            <h2>OLED显示屏幕，升级计步算法</h2>
+            <h3>149元</h3>
+        </div>
+        <div class="buy-list">
+            <ul class="buy-inner">
+                <li class="star_item star_item4 buy-item">
+                    <img src="img/dp1.jpg" alt="">
+                    <h1>小米净水器 厨下式</h1>
+                    <h2>直出纯净水，隐藏式安装</h2>
+                    <h3>1999元</h3>
+                </li>
+
+                <li class="star_item star_item3 buy-item">
+                    <img src="img/dp4.png" alt="">
+                    <h1>小米圈铁耳机Pro</h1>
+                    <h2>独创双动圈+动铁，三单元发声</h2>
+                    <h3>129元</h3>
+                </li>
+
+                <li class="star_item star_item2 buy-item">
+                    <img src="img/dp5.png" alt="">
+                    <h1>米家扫地机器人</h1>
+                    <h2>爱干净，高效完成清扫任务</h2>
+                    <h3>1699元</h3>
+                </li>
+
+                <li class="star_item star_item1 buy-item">
+                    <img src="img/dp2.png" alt="">
+                    <h1>小米路由器3</h1>
+                    <h2>更快更强，不止四天线</h2>
+                    <h3>119元</h3>
+                </li>
+                <li class="star_item star_item4 buy-item">
+                    <img src="img/dp1.jpg" alt="">
+                    <h1>小米净水器 厨下式</h1>
+                    <h2>直出纯净水，隐藏式安装</h2>
+                    <h3>1999元</h3>
+                </li>
+
+                <li class="star_item star_item3 buy-item">
+                    <img src="img/dp4.png" alt="">
+                    <h1>小米圈铁耳机Pro</h1>
+                    <h2>独创双动圈+动铁，三单元发声</h2>
+                    <h3>129元</h3>
+                </li>
+
+                <li class="star_item star_item2 buy-item">
+                    <img src="img/dp5.png" alt="">
+                    <h1>米家扫地机器人</h1>
+                    <h2>爱干净，高效完成清扫任务</h2>
+                    <h3>1699元</h3>
+                </li>
+
+                <li class="star_item star_item1 buy-item">
+                    <img src="img/dp2.png" alt="">
+                    <h1>小米路由器3</h1>
+                    <h2>更快更强，不止四天线</h2>
+                    <h3>119元</h3>
+                </li>
+                <li class="star_item star_item2 buy-item">
+                    <img src="img/dp5.png" alt="">
+                    <h1>米家扫地机器人</h1>
+                    <h2>爱干净，高效完成清扫任务</h2>
+                    <h3>1699元</h3>
+                </li>
+
+                <li class="star_item star_item1 buy-item">
+                    <img src="img/dp2.png" alt="">
+                    <h1>小米路由器3</h1>
+                    <h2>更快更强，不止四天线</h2>
+                    <h3>119元</h3>
+                </li>
+                <li class="star_item star_item2 buy-item">
+                    <img src="img/dp5.png" alt="">
+                    <h1>米家扫地机器人</h1>
+                    <h2>爱干净，高效完成清扫任务</h2>
+                    <h3>1699元</h3>
+                </li>
+
+                <li class="star_item star_item1 buy-item">
+                    <img src="img/dp2.png" alt="">
+                    <h1>小米路由器3</h1>
+                    <h2>更快更强，不止四天线</h2>
+                    <h3>119元</h3>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</section>
+<!--选项卡-->
+<div class="content">
+    <div class="content-top">
+        <div class="type active">热门</div>
+        <div class="type">电视影音</div>
+        <div class="type">电脑</div>
+        <div class="type">家居</div>
+    </div>
+    <div class="content-bottom">
+        <div class="goodslist active">1</div>
+        <div class="goodslist">2</div>
+        <div class="goodslist">3</div>
+        <div class="goodslist">4</div>
+    </div>
+</div>
+<!-- 内容开始 -->
+<section class="gao4">
+    <div class="jiadian_top jiadian_top1">
+        <h3>内容</h3>
+    </div>
+    <div class="gao5 ">
+        <div class="gao5_right jiadian_right1 ">
+            <div class="gao5_item jiadian_item3 biaoqian gao3_item1">
+                <div class="inner">
+                    <div class=" content-3">
+                        <span>图书</span>
+                        <a href="">哈利波特与被诅咒的孩子</a>
+                        <p>“哈利·波特”第八个故事中文版震撼来</p>
+                        <p>袭！特别彩排版剧本！</p>
+                        <h1>29.37元</h1>
+                        <img src="img/neirong1.png" alt="">
+
+                    </div>
+                    <div class=" content-2 content-3">
+                        <span>图书</span>
+                        <a href="">哈利波特与被诅咒的孩子</a>
+                        <p>“哈利·波特”第八个故事中文版震撼来</p>
+                        <p>袭！特别彩排版剧本！</p>
+                        <h1>29.37元</h1>
+                        <img src="img/neirong1.png" alt="">
+
+                    </div>
+                    <div class=" content-2 content-3">
+                        <span>图书</span>
+                        <a href="">哈利波特与被诅咒的孩子</a>
+                        <p>“哈利·波特”第八个故事中文版震撼来</p>
+                        <p>袭！特别彩排版剧本！</p>
+                        <h1>29.37元</h1>
+                        <img src="img/neirong1.png" alt="">
+
+                    </div>
+
+                    <div class="lbd">
+                        <div class="lbd1 active"></div>
+                        <div class="lbd1"></div>
+                        <div class="lbd1"></div>
+                    </div>
+                    <div class="neirong_btn neirong_lbtn">&lt;</div>
+                    <div class="neirong_btn neirong_rbtn">&gt;</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- 内容结束 -->
+<!-- 轮播图定位列表 -->
+<div class="banner1">
+    <div class="sidebar">
+        <div class="label">
+            1
+            <div class="menu">1</div>
+        </div>
+        <div class="label">
+            2
+            <div class="menu">2</div>
+        </div>
+        <div class="label">
+            3
+            <div class="menu">3</div>
+        </div>
+        <div class="label">
+            4
+            <div class="menu">4</div>
+        </div>
+        <div class="label">
+            5
+            <div class="menu">5</div>
+        </div>
+    </div>
+</div>
+<!-- 顶部开始 -->
+<div class="box">
+    <div class="top"></div>
+    <div class="bottom"></div>
+</div>
+<script src="jquery-3.3.1.min.js"></script>
+<script>
+    //banner部分
+    {
+    $(".pagerbox li").click(function () {
+        let index=$(this).index(".pagerbox li");
+            $(".imgBox li").removeClass("active").eq(index).addClass("active");
+            $(".pagerbox li").removeClass("active").eq(index).addClass("active");
+            n=index;
+        })
+        let n=0;
+        let flag=true;
+        function  move() {
+            n++;
+            if(n===$(".imgBox li").length){
+                n=0;
+            };
+            if(n<0){
+                n=$(".imgBox li").length-1;
+            };
+            $(".imgBox li").each(function () {
+                flag=true;
+                $(".imgBox li").removeClass("active").eq(n).addClass("active");
+                $(".pagerbox li").removeClass("active").eq(n).addClass("active");
+            })
+        }
+
+        $(".next").click(function () {
+            if(flag){
+                flag=false;
+                move();
+            }
+        })
+        $(".prev").click(function () {
+            if(flag){
+                flag=false;
+                n-=2;
+                move();
+            }
+        });
+    }
+    //明星单品
+    {
+    let n=0;
+    let inner=$(".buy-inner");
+    $(".star_btn2").click(function () {
+        n++;
+        $(".star_btn1").removeClass("disable");
+        if(n===2){
+            $(this).addClass("disable");
+        };
+        if(n===3){
+            n=2;
+            return;
+        }
+        inner.animate({marginLeft:-n*992},500)
+    });
+    $(".star_btn1").click(function () {
+        n--;
+        $(".star_btn2").removeClass("disable");
+        if(n===0){
+            $(".star_btn1").addClass("disable");
+        }
+        if(n===-1){
+            n=0;
+            return;
+        }
+        inner.animate({marginLeft:-n*992},500)
+    });
+    }
+    //选项卡
+    {
+    $(".type")
+        .mouseenter(function () {
+            let index=$(this).index(".type");
+            $(".type").removeClass("active").eq(index).addClass("active");
+            $(".goodslist").removeClass("active").eq(index).addClass("active");
+        })
+    }
+    //内容
+    {
+    let n1=0;
+    let contents=$(".content-3");
+    let l=contents.length;
+    let inner1=$(".inner");
+    $(".neirong_rbtn").click(function () {
+        n1++;
+        if(n1===l){
+            n1=l-1;
+            return;
+        }
+        inner1.animate({marginLeft:-n1*296},100);
+        $(".lbd1").eq(n1).addClass("active");
+        $(".lbd1").eq(n1-1).removeClass("active");
+    })
+    $(".neirong_lbtn").click(function () {
+        n1--;
+        if(n1<0){
+            n1=0;
+            return;
+        }
+        inner1.animate({marginLeft:-n1*296},100);
+        $(".lbd1").eq(n1).addClass("active");
+        $(".lbd1").eq(n1+1).removeClass("active");
+    })
+    $(".lbd1").click(function () {
+        let index=$(this).index(".lbd1");
+        $(".lbd1").removeClass("active").eq(index).addClass("active");
+        inner1.animate({marginLeft:index*-296},100);
+        n1=index;
+    })
+    }
+    //bannerlist
+    {
+    $(".label")
+        .mouseenter(function () {
+            let index=$(this).index(".label");
+            $(".menu").eq(index).show();
+        })
+        .mouseleave(function () {
+            let index=$(this).index(".label");
+            $(".menu").eq(index).hide();
+        })
+    }
+
+    //顶部效果
+    {
+        $(".top")
+            .mouseenter(function () {
+            $(".bottom").animate({height:350},1000)
+        })
+        $(".box")
+            .mouseleave(function () {
+            $(".bottom").animate({height:0},1000)
+        })
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .scene{
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<div class="scene"></div>
+</body>
+<script>
+    let arr=["html","css","javascript","vue","nodejs","php","mysql","bootstrap","express","antd"];
+    let docf=document.createDocumentFragment();
+    let colorArr=["0","3","9","C"];
+    function getcolor(){
+        let color="#";
+        for(let i=0;i<3;i++){
+            color+=colorArr[Math.floor(Math.random()*colorArr.length)];
+        }
+        return color;
+    }
+    function checkpos(l,t){
+        for(let i=0;i<pos.length;i++){
+            let p=pos[i];
+            if(l>p.l-100&&l<p.l+100&&t>p.t-100&&t<p.t+100){
+                return true;
+            }
+        }
+        return false;
+    }
+    let pos=[];
+    let divArr=arr.map(function(val,index){
+        let newdiv=document.createElement("div");
+        newdiv.innerHTML=val;
+        let randomLeft,randomTop;
+        do{
+            randomLeft=(window.innerWidth-100)*Math.random();
+            randomTop=(window.innerHeight-100)*Math.random();
+        }while (checkpos(randomLeft,randomTop));
+        pos.push({l:randomLeft,t:randomTop});
+        newdiv.style.cssText=`width:100px;height:100px;background:${getcolor()};
+        position:absolute;top:${randomTop}px;left:${randomLeft}px;
+        border-radius:50%;text-align:center;line-height:100px;color:#fff`;
+        docf.appendChild(newdiv);
+    })
+    let scene=document.querySelector(".scene");
+    scene.appendChild(docf);
+</script>
+</html>

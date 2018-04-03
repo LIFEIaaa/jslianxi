@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>懒加载</title>
+    <style>
+        .section{
+            width: 1000px;
+            height: 500px;
+            margin: 50px auto;
+            border: 1px solid #00c0a5;
+        }
+        .section img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="section"><img data-original="./img/banner1.jpg" alt=""></div>
+<div class="section"><img data-original="./img/banner2.jpg" alt=""></div>
+<div class="section"><img data-original="./img/banner3.jpg" alt=""></div>
+<div class="section"><img data-original="./img/banner4.jpg" alt=""></div>
+<div class="section"><img data-original="./img/banner5.jpg" alt=""></div>
+<script src="jquery-3.3.1.min.js"></script>
+<script src="jquery.lazyload.js"></script>
+<script>
+    $("img").lazyload();
+</script>
+</body>
+</html>

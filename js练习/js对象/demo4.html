@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>元素对象的事件</title>
+    <style>
+        .container{
+            width: 600px;
+            height: 300px;
+            border:1px solid #000;
+            margin:0 auto;
+        }
+        .top{
+            width: 600px;
+            height: 50px;
+            background: #ccc;
+        }
+        .btn{
+            width: 200px;
+            height: 50px;
+            float: left;
+            font-size: 20px;
+            color: red;
+            line-height: 50px;
+            text-align: center;
+        }
+        .bottom{
+            width: 600px;
+            height: 250px;
+            position: relative;
+        }
+        .content{
+            width: 600px;
+            height: 250px;
+            position: absolute;
+            left: 200px;
+            top:0;
+        }
+        .content img{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="top">
+        <div class="btn" style="background: #ccc" color="#fff">1</div>
+        <div class="btn">2</div>
+        <div class="btn">3</div>
+    </div>
+    <div class="bottom">
+        <div class="content" style="z-index: 9"><img src="touxiang.JPG" alt=""></div>
+        <div class="content"><img src="shouji.png" alt=""></div>
+        <div class="content"><img src="touxiang.JPG" alt=""></div>
+    </div>
+</div>
+</body>
+<script>
+        var btns=document.querySelectorAll(".btn");
+        var cons=document.querySelectorAll(".content");
+        for(let i=0;i<btns.length;i++){
+            btns[i].onclick=function () {
+                for(let j=0;j<btns.length;j++){
+                    btns[j].style.background="";
+                    btns[j].style.color="";
+                    cons[j].style.zIndex="";
+                }
+                btns[i].style.background="red";
+                btns[i].style.color="#fff";
+                cons[i].style.zIndex=9;
+            }
+        }
+</script>
+</html>

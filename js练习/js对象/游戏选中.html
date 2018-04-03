@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数学对象</title>
+    <script>
+        //Array String Math数学对象
+        //取绝对值
+        console.log(Math.abs(-100));              //100
+        console.log(Math.abs(100));                  //100
+
+        //取整运算
+        console.log(Math.round(4.4));              //四舍五入    4
+        console.log(Math.round(4.6));              //四舍五入      5
+
+        //向下取整
+        console.log(Math.floor(4.999));         //4
+        console.log(Math.floor(-1.999));       //-2
+
+        //向上取整
+        console.log(Math.ceil(4.0001));              //5
+
+        console.log(Math.max(90, 67, 500));        //找最大的数
+        console.log(Math.min(90, 56, 30, -90));           //找最小的数
+
+        //求随机数
+        // console.log(Math.floor(Math.random() * 3));             //random()里不传参数
+        // var arr = ["a", "b", "c", "d"];
+        // setInterval(function () {
+        //     console.log(arr[Math.floor(Math.random() * 3)]);
+        // }, 3000);
+
+        //50-100的随机数
+        console.log(Math.random() * 50 + 50);
+
+        //20-30的随机数
+        console.log(Math.random() * 10 + 20);
+
+        //-10-10的随机数
+        console.log(Math.random() * 20 - 10);
+
+        //A-Z之间的随机字母
+        //65-90
+        var num = console.log(Math.floor(Math.random() * 26 + 65));
+        // console.log(String.fromCharCode(num));
+    </script>
+    <style>
+        .container {
+            width: 1000px;
+            height: 600px;
+            margin: 0 auto;
+        }
+
+        .container div.active {
+            background: red !important;
+        }
+
+        .container div {
+            width: 100px;
+            height: 100px;
+            /*border: 1px solid #000;*/
+            float: left;
+            line-height: 100px;
+            text-align: center;
+        }
+
+        input {
+            display: block;
+            background: #f99;
+            height: 30px;
+            width: 100px;
+            color: #fff;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+<input type="button" value="start">
+</body>
+<script>
+    var divs = document.querySelectorAll(".container div");
+    var start = document.querySelector("input[type=button]");
+    divs.forEach(function (ele, index) {
+        var r = Math.floor(Math.random() * 155 + 100);
+        var g = Math.floor(Math.random() * 155 + 100);
+        var b = Math.floor(Math.random() * 155 + 100);
+        ele.style.background = `rgb(${r},${g},${b})`;
+        ele.innerHTML = index + 1;
+    });
+    let obj = divs[0];
+    let i = 0;
+    let t;
+    start.onclick = function () {
+        i++;
+        if (i % 2 === 1) {
+            t = setInterval(function () {
+                let num = Math.floor(Math.random() * 55);
+                obj.classList.remove("active");
+                divs[num].classList.add("active");
+                obj = divs[num];
+            }, 50);
+        } else {
+            clearInterval(t);
+        }
+    }
+</script>
+</html>

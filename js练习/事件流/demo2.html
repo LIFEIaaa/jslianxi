@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 300px;
+            height: 300px;
+            background: blue;
+        }
+        .item{
+            width: 50px;
+            height: 50px;
+            background: red;
+            margin:10px 10px;
+            float: left;
+        }
+        input{
+            width: 80px;
+            height: 30px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+</div>
+<input type="button" value="add">
+</body>
+<script>
+    //阻止浏览器默认行为
+    //e.stopPropagation();
+    //e.toElement
+    //事件委派
+    //e.target  获取目标事件源/直接事件源   最开始触发事件的元素
+    let box=document.querySelector(".box");
+    let items=document.querySelectorAll(".item");
+    box.onclick=function () {
+        box.style.background="#000";
+    }
+    items.forEach(function (ele) {
+        ele.onclick=function (e) {
+            // e.stopPropagation();
+            this.style.background="#000";
+        }
+    })
+    let add=document.querySelector("input");
+    add.onclick=function () {
+        let newdiv=document.createElement("div");
+        newdiv.className="item";
+        box.appendChild(newdiv);
+    }
+    box.onclick=function (e) {
+        let target=e.target;
+        if(target.className==="item"){
+            target.style.background="#000";
+        }
+    }
+</script>
+</html>

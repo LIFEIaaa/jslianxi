@@ -1,0 +1,157 @@
+body{
+	background-color: #f2f2f2;
+}
+a:hover{
+	text-decoration: none;
+}
+.header{
+	width: 100%;	
+	height: 400px;
+	background: url('../img/tupian.jpg');
+	background-position: center 0;
+	background-size: cover;
+}
+.content{
+	width: 100%;
+	height: auto;
+	background-color: #fff;
+	padding: 12px;
+	margin-bottom: 30px;
+	box-shadow: 0 0 2px #E0E0E0;
+}
+.main{
+	margin-top: 90px;
+}
+.imgbox{
+	width: 100%;
+	height: auto;
+	padding-top: 62.5%;
+	position: relative;
+}
+.imginner{
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	position: absolute;
+}
+.imginner img{
+	width: 100%;
+}
+.title{
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	font-size: 24px;
+	color: #777;
+}
+.page{
+	width: 100%;
+	height: auto;
+	text-align: center;
+	position: relative;
+	margin: 20px 0;
+}
+.page_ye{
+	font-size: 13px;
+	color: #666;
+}
+.anniu{
+	padding: 10px;
+	border: 1px solid #39414a;
+	color: #39414a;
+	border-radius: 3px;
+	position: absolute;
+	top: -10px;
+	right: 10px;
+	cursor: pointer;
+}
+.site{
+	background-color: #eee;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	margin-top: 20px;
+}
+.container{
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-right: auto;
+	margin-left: auto;
+}
+.submit{
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #333;
+}
+.duanluo,.zhuming{
+	text-align: center;
+}
+.wangye{
+	color: #337AB7;
+	cursor: pointer;
+}
+.footer{
+	background-color: #202020;
+	padding: 35px 0 0;
+	color: #959595;
+}
+.row{
+	margin-right: -15px;
+	margin-left: -15px;
+}
+.lianjie{
+	padding: 0 30px;
+	margin-bottom: 35px;
+}
+.title1{
+	color: #fff;
+	border-bottom: 1px solid #303030;
+	font-size: 18px;
+	font-weight: 500;
+	padding-bottom: 7px;
+	margin-top: 0;
+	margin-bottom: 21px;
+	position: relative;
+}
+.lianjie span{
+	padding: 2px 7px;
+	color: #959595;
+	line-height: 1.5em;
+	margin: 0 7px 7px 0;
+	border: 1px solid #303030;
+	cursor: pointer;
+	font-size: 14px;
+	display: inline-block;
+}
+.lianjie .title1:after{
+	content: "";
+	width: 90px;
+	height: 1px;
+	background: #337ab7;
+	position: absolute;
+	left: 0;
+	bottom: -1px;
+}
+.youpai{
+	color: #959595;
+	border: 0;
+	cursor: pointer;
+	border-bottom: 1px dashed #303030;
+	padding-bottom: 14px;
+	display: block;
+}
+.copyright{
+	background: #111;
+	font-size: 13px;
+	text-align: center;
+	padding-top: 14px;
+	padding-bottom: 20px;
+	border-top: 1px solid #303030;
+	color: #555;
+}
+.copyright span{
+	margin: 0 0.5em;
+}
+.copyright a{
+	color: #555;
+}

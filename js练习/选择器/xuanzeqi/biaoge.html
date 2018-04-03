@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表格</title>
+	<style>
+		.mytable{
+			width: 500px;
+			height: 300px;
+			border: 1px solid pink;
+			/*只有表格可用*/
+			border-collapse: collapse;
+			table-layout: fixed;
+
+			margin: 0 auto;
+			text-align: center;
+			word-break: break-all;
+			margin-top: 30px;
+		}
+		.mytable td,th{
+			width: 400px;
+			border: 1px solid yellow;
+		}
+		caption{
+			font-size: 36px;
+		}
+		.mytable2 td{
+			border: none;
+			border-bottom: 1px solid pink;
+
+		}
+		.mytable2{
+			border-collapse: collapse;
+		}
+		.mytable2 tr:last-child>td{
+			border: none;
+		}
+		</style>
+</head>
+<body>
+	<table width="600" height="300" border="1" cellspacing="0" align="center" bgcolor="skyblue">
+		<tr height="150" align="center" valign="top" bgcolor="pink">
+			<td width="300" align="left" valign="top" bgcolor="yellow">12345</td>
+			<td>12345</td>
+			<td>12345</td>
+			<td>12345</td>
+		</tr>
+		<tr>
+			<td>12345</td>
+			<td>12345</td>
+			<td>12345</td>
+			<td>12345</td>
+		</tr>
+		<tr>
+			<td>12345</td>
+			<td>12345</td>
+			<td>12345</td>
+			<td>12345</td>
+		</tr>
+	</table>
+
+	<table class="mytable">
+		<caption>标题</caption>
+		<thead>
+			<tr>
+				<th colspan="3">001</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>001</td>
+				<td>002</td>
+				<td rowspan="2">003</td>
+			</tr>
+			<tr>
+				<td>001</td>
+				<td>002</td>
+				
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td>001</td>
+				<td>002</td>
+				<td>
+					<table class="mytable2">
+						<tr>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td>1</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+</body>
+</html>

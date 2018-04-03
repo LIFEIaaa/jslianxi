@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数</title>
+    <script>
+        // function fn() {
+        //     for (var i = 0; i < 6; i++) {
+        //         for (var j = 0; j <= 5 - i; j++) {
+        //             document.write("&nbsp;");
+        //         }
+        //         for (var j = 0; j <= i; j++) {
+        //             document.write("*&nbsp;");
+        //         }
+        //         document.write("<br>");
+        //     }
+        // }
+        // fn();
+
+        // a();
+        // function a() {
+        //     alert(1);
+        //     alert(2);
+        //     alert(3);
+        // }
+        //a();              //调用函数名 获取内部包装的代码
+
+        //匿名函数
+        // var foo = function () {
+        //     alert(2);
+        // }
+        //foo();      //变量名
+
+        //实例化
+        // var bar=new Function("alert(3)");
+        // bar();
+
+        (function () {
+            alert("函数自调用");
+        })();
+    </script>
+    <style>
+        .demo{
+            width: 200px;
+            height: 200px;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo"></div>
+</body>
+<script>
+    var ele=document.querySelector(".demo");
+    ele.onclick=function () {                   //声明
+        alert(1);
+    }
+</script>
+</html>

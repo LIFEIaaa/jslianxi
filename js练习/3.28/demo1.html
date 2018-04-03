@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .demo {
+            width: 30vw;
+            height: 30vw;
+            background: red;
+            position: relative;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="demo"></div>
+<script>
+    //移动端事件
+    //touchstart触摸开始    touchmove触摸移动    touchend触摸结束           touchcancel()
+    let demo = document.querySelector(".demo");
+    let sx, sy, movex, movey, ex = 0, ey = 0;
+    //sx,sy元素起始位置
+    //movex,movey当前这次触摸移动的值
+    //ex,ey保存上一次触摸移动的位置
+    demo.ontouchstart = function (e) {
+        sx = e.changedTouches[0].clientX;
+        sy = e.changedTouches[0].clientY;
+    }
+    demo.ontouchmove = function (e) {
+        let cx = e.changedTouches[0].clientX;
+        let cy = e.changedTouches[0].clientY;
+        movex = cx - sx;
+        movey = cy - sy;
+        demo.style.transform = `translate(${ex + movex}px,${ey + movey}px)`;
+    }
+    demo.ontouchend = function (e) {
+        ex = ex + movex;
+        ey = ey + movey;
+    }
+</script>
+</body>
+</html>

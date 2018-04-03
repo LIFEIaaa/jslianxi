@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .container{
+            width: 1000px;
+            height: 200px;
+            border: 1px solid #eee;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .inner{
+            width:5000px;
+            height: 200px;
+            /*transition: all 1s;*/
+            margin-left: -1000px;
+        }
+        .inner li{
+            width: 200px;
+            height: 200px;
+            float: left;
+        }
+        .inner li a{
+            display: block;
+        }
+        .inner li img{
+            width: 199px;
+            height: 200px;
+        }
+        #prev,#next{
+            width: 40px;
+            height: 60px;
+            background: red;
+            position: absolute;
+            top:70px;
+            font-size: 20px;
+            color: #fff;
+            text-align: center;
+            line-height: 60px;
+            visibility: hidden;
+            cursor: pointer;
+            user-select: none;
+        }
+        #prev{
+            left: 0;
+        }
+        #next{
+            right: 0;
+        }
+        .container:hover #prev, .container:hover #next{
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <ul class="inner">
+        <li class="item"><a href=""><img src="" alt=""></a></li>
+        <li class="item"><a href=""><img src="img/7.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="img/8.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="img/9.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="img/10.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="img/djh1.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="img/djh2.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="img/djh3.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="img/djh4.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="img/djh5.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="img/1.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="img/2.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="img/3.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="img/4.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="img/5.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="img/6.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="img/7.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="img/8.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="img/9.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="img/10.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="img/djh1.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="img/djh2.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="img/djh3.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="img/djh4.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="img/djh5.webp" alt=""></a></li>
+    </ul>
+    <div id="prev">&lt;</div>
+    <div id="next">&gt;</div>
+</div>
+<script src="jquery-3.3.1.min.js"></script>
+<script>
+    let inner = $(".inner");
+    $(".container").hover(function () {
+        $("#prev,#next").fadeIn(500)
+    },function () {
+        $("#prev,#next").fadeOut(500)
+    });
+    // $(".container")
+    //     .mouseenter(function () {
+    //         $("#prev,#next").fadeIn(500)
+    //     })
+    //     .mouseenter(function () {
+    //         $("#prev,#next").fadeOut(500)
+    //     });
+
+    let n = 1;
+    let flag = true;
+    $("#next").click(function () {
+        if (flag) {
+            flag = false;
+            n++;
+            inner.animate({marginLeft: -n * 1000}, 1000, function () {
+                flag = true;
+                if (n === 4) {
+                    inner.css("marginLeft", -1000);
+                    n = 1;
+                }
+            })
+        }
+    });
+    $("#prev").click(function () {
+        if (flag) {
+            flag = false;
+            n--;
+            inner.animate({marginLeft: -n * 1000}, 1000, function () {
+                flag = true;
+                if (n === 0) {
+                    inner.css("marginLeft", -3000)
+                    n = 3;
+                }
+            })
+        }
+    });
+</script>
+</body>
+</html>

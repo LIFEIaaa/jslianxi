@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>内置顶层函数</title>
+    <script>
+        // eval("alert(1)");
+
+        //Number
+        console.log(Number("123"));                    //123
+        console.log(Number("abc"));                     //NaN
+        console.log(Number("123ana"));      //NaN
+        console.log(Number(""));     //0
+        console.log(Number("-1"));       //-1
+        console.log(Number("0x11"));           //十六进制  17
+        console.log(Number("0000111000"));       //111000
+        console.log(Number("0000111.000"));         //111
+        console.log(Number(true));         //1
+        console.log(Number(false));         //0
+        console.log(Number(undefined));         //NaN
+        console.log(Number(null));       //0
+        console.log(Number({name:"zhangsan"}));    //NaN
+
+        //parseInt
+        console.log(parseInt("123"));         //123
+        console.log(parseInt("abc")) ;           //NaN
+        console.log(parseInt("123abc"));       //123
+        console.log(parseInt("abc123"));       //NaN
+        console.log(parseInt(" "));        //NaN
+        console.log(parseInt("0x11"));         //十六进制   17
+        console.log(parseInt("-1"));   //-1
+        console.log(parseInt("000000001"));        //1
+        console.log(parseInt(null));        //NaN
+        console.log(parseInt(undefined));     //NaN
+        console.log(parseInt(true));     //NaN
+        console.log(parseInt(false));     //NaN
+        console.log(parseInt({name:"zhangsan"}));       //NaN
+        console.log(parseInt("1.1"));     //1
+
+        //parseInt 第二个参数
+        console.log(parseInt("11",8));  //9
+
+        //parseFloat
+        console.log(parseFloat("123"));     //123
+        console.log(parseFloat("123.123"));      // 123.123
+
+        //String
+        console.log(String(123));      //字符串
+        console.log(String(function () {}));      //function(){}
+
+        //Boolean
+        console.log(Boolean("0"));  //true
+
+        //isNaN
+        var n=prompt("请输入一个数值");
+        while(isNaN(n)){
+            n=prompt("请输入数值");
+        }
+        n=Number(n);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

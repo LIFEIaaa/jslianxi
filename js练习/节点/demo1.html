@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">//元标签
+    <title>Document</title>
+    <style>
+        .box{
+            width: 300px;
+            height: 300px;
+            background-color: blue;
+            margin:0 auto;
+        }
+        .item{
+            width: 80px;
+            height: 80px;
+            background: red;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="one" title="123">
+    123<!--注释-->
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+</div>
+</body>
+<script>
+    // 文档树    或者文档树模型
+    // console.log(document);
+    // 定义了节点和节点的属性方法去实现文档树模型的描绘
+    // js节点
+    // 每一个标签都是一个元素节点
+    // 每一个文本都是一个文本节点
+    // 标签的每一个属性都是一个属性节点
+    // 每一个注释都是一个注释节点
+    // 整个文档称为文档节点
+
+    //节点也是对象
+    //属性
+    //节点的关系属性
+    let item1=document.querySelector(".item:first-child");
+    let box=item1.parentNode;    //获取元素的父节点
+    // console.log(".box");
+
+    let box1=document.querySelector(".box");
+    // console.log(box==box1);
+
+    let childs=box.childNodes;
+    console.log(childs);
+
+    let firstchild=box.firstChild;
+    console.log(firstchild);             //第一个子节点 #text
+
+    let lastchild=box.lastChild;
+    console.log(lastchild);            //最后一个子节点  #text
+
+    let firstElementChild=box.firstElementChild;
+    // console.log(firstElementChild);        //第一个元素子节点   item1
+
+    let lastElementChild=box.lastElementChild;
+    // console.log(lastElementChild);              //最后一个元素子节点 item3
+
+    let nextSibling=item1.nextSibling;
+    // console.log(nextSibling);       //获取下一个兄弟节点  #text
+
+    let previousSibling=lastElementChild.previousSibling;
+    //console.log(previousSibling);      //获取前一个兄弟节点     #text
+
+    let nextElement=item1.nextElementSibling;
+    // console.log(nextElement);         //获取下一个兄弟元素
+
+    let previousElement=lastElementChild.previousElementSibling;
+    // console.log(previousElement);       //获取前一个兄弟元素
+
+    let comment=firstchild.nextSibling;
+
+    let attrnode=box.attributes[0];
+    // console.log(attrnode[0]);
+    //节点的信息属性
+    //nodeType      nodeName        nodeValue
+    console.log("元素节点");
+    console.log(box.nodeType);          //     1
+    console.log(box.nodeName);           //DIV
+    console.log(box.nodeValue);              //null
+
+    console.log("属性节点");
+    console.log(attrnode.nodeType);        //2
+    console.log(attrnode.nodeName);        //class
+    console.log(attrnode.nodeValue);      //box
+
+    console.log("文本节点")
+    console.log(firstchild.nodeType);      //3
+    console.log(firstchild.nodeName);      //    #text
+    console.log(firstchild.nodeValue);    //123
+
+    console.log("注释节点");
+    console.log(comment.nodeType);      //  8
+    console.log(comment.nodeName);      //    #comment
+    console.log(comment.nodeValue);     //注释
+
+    console.log("文档节点");
+    console.log(document.nodeType);      //9
+    console.log(document.nodeName);    // #document
+    console.log(document.nodeValue);      //null
+</script>
+</html>

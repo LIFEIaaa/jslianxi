@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            height: 3000px;
+        }
+        .totop {
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            background: red;
+            position: fixed;
+            right: 100px;
+            bottom: 100px;
+        }
+        .topbar {
+            position: fixed;
+            width: 100%;
+            height: 40px;
+            background: yellow;
+            left: 0;
+            top: 0;
+            display: none;
+        }
+        .leftbar {
+            width: 100px;
+            height: 400px;
+            background: pink;
+            position: fixed;
+            left: 50%;
+            bottom: 100px;
+            margin-left: -695px;
+            display: none;
+        }
+        .container {
+            width: 1190px;
+            height: 500px;
+            margin: 30px auto;
+            border: 1px solid #000;
+            text-align: center;
+            line-height: 500px;
+            font-size: 50px;
+        }
+        .top {
+            height: 800px;
+        }
+
+        .tips {
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 36px;
+        }
+
+        .tips:hover {
+            background: yellow;
+            color: #fff;
+        }
+        .tips.active{
+            background: green;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<!--<img src="导航.png" alt="">-->
+<div class="totop"></div>
+<div class="topbar"></div>
+<div class="leftbar">
+    <div class="tips active">1</div>
+    <div class="tips">2</div>
+    <div class="tips">3</div>
+    <div class="tips">4</div>
+    <div class="tips">5</div>
+    <div class="tips">6</div>
+    <div class="tips">7</div>
+    <div class="tips">8</div>
+</div>
+<div class="top"></div>
+<div class="container">1</div>
+<div class="container">2</div>
+<div class="container">3</div>
+<div class="container">4</div>
+<div class="container">5</div>
+<div class="container">6</div>
+<div class="container">7</div>
+<div class="container">8</div>
+<div class="top"></div>
+<script src="jquery-3.3.1.min.js"></script>
+<script>
+    //返回顶部
+    $(".totop").click(function () {
+        // $(window).scrollTop();
+        $("html,body").animate({scrollTop:0});
+    });
+    //显示隐藏
+    $(window).scroll(function () {
+        let st=$(window).scrollTop();          //获取滚动高度
+        if(st>700){
+            $(".topbar").show();
+        }else{
+            $(".topbar").hide();
+        }
+        if(st>900){
+            $(".leftbar").show();
+        }else{
+            $(".leftbar").hide();
+        }
+    });
+
+    //楼层跳转
+    $(".tips").click(function () {
+        let index=$(this).index(".tips");
+        let ot=$(".container").eq(index).offset().top-100;
+        $("html,body").animate({scrollTop:ot},200);
+    });
+
+    //监测滚动
+    $(window).scroll(function () {
+        let st=$(window).scrollTop();
+        $(".container").each(function (index,ele) {
+            if(st>=$(this).offset().top-250){
+                $(".tips").removeClass("active").eq(index).addClass("active");
+            }
+        })
+    })
+</script>
+</body>
+</html>

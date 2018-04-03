@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .demo {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div class="demo"></div>
+<input type="button" value="stop">
+<script src="jquery-3.3.1.min.js"></script>
+<script>
+    // $(".demo")
+    //     .animate({width:300},1000)
+    //     .delay(1000)
+    //     .fadeOut(1000)
+    //     .fadeIn(1000)
+    //     .animate({height:300},1000)
+    //     .css("background","blue")
+    //     .html(111)
+    //队列   fx=[function(){},function(){}]         push 入队
+    //出队  shift
+
+    //console.log($(".demo").queue("fx"));
+    //fx是当前元素身上默认动画队列的名字
+
+    // $(".demo").css({width:300})
+    // setTimeout(function () {
+    //     $(".demo").css({height:300})
+    //     setTimeout(function () {
+    //         $(".demo").css("background","blue")
+    //     },1000)
+    // },1000)
+
+    //queue()  自己构造一个队列
+    //$(".demo").queue("fn",[f1,f2,f3,f4.......])
+    // $(".demo").queue("fn", [
+    //     function () {
+    //         $(".demo").css({width: 300});
+    //         out()            //手动让下一个函数继续执行
+    //     },
+    //     function () {
+    //         setTimeout(function () {
+    //             out()
+    //         }, 1000)
+    //     },
+    //     function () {
+    //         $(".demo").css({height: 300})
+    //         out()
+    //     },
+    //     function () {
+    //         setTimeout(function () {
+    //             out()
+    //         },1000)
+    //     },
+    //     function () {
+    //         $(".demo").css("background","blue")
+    //     }
+    // ])
+    //
+    // //dequeue() 取出当前队列的第一个函数并执行
+    // function out() {
+    //     $(".demo").dequeue("fn");
+    // }
+    // out();
+
+    //queue("fx",funcction(){})          queue(function(){})
+    //queue("fn",function(){})        往动画队列里添加一个函数
+    // $(".demo")
+    //     .animate({width:300},1000)
+    //     .delay(1000)
+    //     .animate({height:300},1000)
+    //     .queue(function () {
+    //         $(".demo").css("background","blue");
+    //         $(".demo").dequeue();
+    //     })
+    // $(".demo").fadeOut(1000)
+
+    //queue()       dequeue()        clearqueue()
+    //1.返回当前元素的动画队列
+    //$().queue()              $().queue("fx")           $().queue("foo")
+    //2.在队列的末尾添加一个函数
+    //$().queue(function(){})            $().queue("fx",function(){})          $().queue("foo",function(){})
+    //3.自己定义一个完整的队列
+    //$().queue("name",[function(){},function(){}])
+    // $(".demo").click(function () {
+    //     $(".demo")
+    //         .fadeOut(1000)
+    //         .fadeIn(1000)
+    //         .delay(1000)
+    //         .slideUp(1000)
+    //         .slideDown(1000)
+    //         .delay(1000)
+    //         .hide(1000)
+    //         .show(1000)
+    //         .animate({width:300},1000)
+    //         .queue(function () {
+    //             $(this).css("background","blue").dequeue();
+    //         })
+    //         .animate({width:100},1000)
+    // });
+    let arr=[
+        function () {
+            setTimeout(function () {
+                $(".demo").css("background","yellow");
+                out();
+            },1000)
+        },
+        function () {
+            setTimeout(function () {
+                $(".demo").css("background","pink");
+                out();
+            },1000)
+        },
+        function () {
+            setTimeout(function () {
+                $(".demo").css("background","skyblue");
+                out();
+            },1000)
+        }
+    ];
+    $(".demo").queue("fn",arr);
+    // function  out() {
+    //     $(".demo").dequeue("fn");
+    // }
+    // out();
+    // $(".demo").clearQueue("fn");       //清空队列
+    $(":button").click(function () {
+        // $(".demo").stop(true,true);         //第一个参数 ：后续队列是否要清空      第二个参数：当前动画是否继续执行
+        $(".demo").finish();    //立即将全部动画完成
+    })
+</script>
+</body>
+</html>

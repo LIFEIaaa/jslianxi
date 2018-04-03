@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Array</title>
+    <script>
+        //Array
+        var arr = [1, 2, 3, 4, [1, 2, 3]];
+        for (var i = 0; i < arr.length; i++) {
+            if (Array.isArray(arr[i])) {
+                console.log(arr[i]);
+            }
+        }
+        //isArray()
+        //from()
+        //of()
+        //ES3   支持ie6 ie7   ie8
+        //push()          在数组的末尾添加一个或多个元素
+        var arr = [45, 67, 89, 96, 47];
+        var newarr = [];
+        for (i = 0; i < arr.length; i++) {
+            if (arr[i]<60) {
+                newarr.push(arr[i])
+            }
+        }
+        console.log(newarr);        //输出不合格的成绩
+
+
+        var arr = [1, 2, 3, 4, 5];
+        console.log(arr.push(16, 17, 18, 19));          //返回值是数组的长度
+       console.log(arr);                 //给数组末尾添加一个或多个元素
+        console.log("返回值是：" + arr.pop());       //返回值是数组最后一个元素的值
+       console.log(arr);       //从数组中删除最后一个元素，并返回该元素的值
+       console.log("返回值是:" + arr.unshift(10, 11, 12));        //返回值是数组的长度
+       console.log(arr);         //将一个或多个元素增加到数组的开头
+       console.log("返回值是：" + arr.shift());          //返回值是数组的长度
+       console.log(arr);      //将数组的第一个元素删除
+       console.log(arr.splice(1,1));      //返回值是  在索引1的位置删除一个元素 组成的数组
+       console.log(arr);           //删除的元素组成的数组
+       console.log(arr.splice(1,0,5));         //splice(任意位置添加或删除)中的值表示：位置    删除    添加
+       console.log(arr);        //在索引1 的位置增加一个元素  组成的数组
+
+        //join
+        console.log(arr.join());      //将数组转换为字符串
+        console.log(arr);
+
+        //截取slice
+        console.log(arr.slice(3));   //返回值是  从数组的索引3的位置开始  以后的元素组成的数组
+        console.log(arr);      //数组内容不变
+
+        //拼接concat
+        var newarr=["a","b","c","d"];
+        console.log(arr.concat(newarr));        //返回值是拼接之后的数组
+        console.log(arr);     //数组内容不变
+
+        //排序sort
+        console.log(arr.sort());      //返回值是 排序之后的数组
+        console.log(arr);         //数组内容改变
+        console.log(arr.sort(function (a,b) {                    //从小往大排序
+            if(a>b){
+                return 1;
+            }else{
+                return -1;
+            }
+        }));
+        console.log(arr.sort(function (a,b) {                    //从大往小排序
+            if(a<b){
+                return 1;
+            }else{
+                return -1;
+            }
+        }));
+        var grade=[{name:"zhangsan",grade:90},{name:"lisi",grade:94},{name:"wangwu",grade:92}];
+        grade.sort(function (a,b) {
+            if(a.grade>b.grade){
+                return 1;
+            }else{
+                return -1;
+            }
+        })
+    </script>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+</body>
+<script>
+    var divs = document.querySelectorAll("div");
+    console.log(Array.from(divs));
+</script>
+
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js对象</title>
+    <script>
+        // var name1="zhangsan";
+        // var sex1="man";
+        // var age1=18;
+        //
+        // var person1={
+        //     name:"zhangsan",
+        //     sex:"man",
+        //     age:"18",
+        //     say:function () {
+        //         alert("hello world");
+        //     }
+        // };
+        // person1.say();
+
+        // console.log(person1.name);
+        // console.log(person1.sex);
+        // console.log(person1.age);
+
+
+        function Human(_sex,_age,_name){
+            //this指的就是将要实例化的对象
+            this.sex=_sex;
+            this.age=_age;
+            this.name=_name;
+            this.say=function () {
+                alert("hello world");
+            }
+        }
+        var person1=new Human("man",18,"zhangsan");                //实例化           类-----对象
+        var person2=new Human("man",17,"lisi");
+        // console.log(person1);
+        // console.log(person2);
+
+        // var attr=prompt("请输入属性名");
+        // console.log(person1[attr]);
+
+        //对象属性的遍历
+        // for(var i in person1){
+        //     console.log(i);
+        //     console.log(person1[i]);
+        // }
+
+        //对象属性的删除
+        delete person1.name;
+        console.log(person1);
+
+        //json格式
+        // var cup={
+        //     color:"yellow",
+        //     size:"m",
+        //     owner:"wangqi",
+        //     drink:function () {
+        //         console.log("杯子可以喝水");
+        //     },
+        //     getWater:function () {
+        //         console.log("杯子可以接水");
+        //     }
+        // }
+        //
+        // var clothes={
+        //     color:"pink",
+        //     size:"M",
+        //     owner:"lifei",
+        //     wear:function () {
+        //         console.log("衣服可以保暖");
+        //     }
+        // }
+        // clothes.wear();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

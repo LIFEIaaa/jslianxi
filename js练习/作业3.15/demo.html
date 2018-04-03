@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/index.css">
+    <style>
+        .banner1 {
+            width: 1226px;
+            height: 400px;
+            margin: 0 auto;
+            background: #f2f2f2;
+            position: relative;
+        }
+
+        .sidebar {
+            width: 234px;
+            height: 400px;
+            background: pink;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .label {
+            width: 100%;
+            height: 50px;
+            line-height: 30px;
+            text-align: center;
+        }
+
+        .label:hover {
+            background: #f60;
+        }
+
+        .menu {
+            width: 500px;
+            height: 400px;
+            background: red;
+            position: absolute;
+            left: 234px;
+            top: 0;
+            font-size: 36px;
+            color: #fff;
+            display: none;
+            line-height: 400px;
+        }
+
+        .box {
+            width: 1000px;
+            height: auto;
+            border: 1px solid #000;
+            margin: 0 auto;
+        }
+
+        .top {
+            width: 1000px;
+            height: 50px;
+            background: blue;
+        }
+
+        .bottom {
+            width: 1000px;
+            height: 0;
+            background: pink;
+            overflow: hidden;
+            transition: all 1s;
+        }
+    </style>
+</head>
+<body>
+//小米banner
+<div id="banner">
+    <ul class="imgBox">
+        <li class="active"><img src="img/banner1.jpg" alt=""></li>
+        <li><img src="img/banner2.jpg" alt=""></li>
+        <li><img src="img/banner3.jpg" alt=""></li>
+        <li><img src="img/banner4.jpg" alt=""></li>
+        <li><img src="img/banner5.jpg" alt=""></li>
+    </ul>
+    <ul class="pagerbox">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <div class="prev">&lt;</div>
+    <div class="next">&gt;</div>
+</div>
+</body>
+<script>
+    //banner效果
+    {
+        //获取需要的元素
+        let imgs = document.querySelectorAll(".imgBox li");
+        let pagers = document.querySelectorAll(".pagerbox li");
+        let banner = document.querySelector("#banner");
+        let next = document.querySelector(".next");
+        let prev = document.querySelector(".prev");
+        //遍历轮播点
+        pagers.forEach(function (ele, index) {
+            //对每一个轮播点设置点击事件
+            ele.onclick = function () {
+                //进行for循环
+                for (let i = 0; i < imgs.length; i++) {
+                    //移除active
+                    imgs[i].classList.remove("active");
+                    pagers[i].classList.remove("active");
+                }
+                //给图片和轮播点添加active
+                this.classList.add("active");
+                imgs[index].classList.add("active");
+                n = index;
+            }
+        })
+        let n = 0;
+        //调用函数
+        let t = setInterval(move, 3000);
+
+        //定义函数
+        function move() {
+            n++;
+            if (n === imgs.length) {
+                n = 0;
+            }
+            ;
+            if (n < 0) {
+                //n等于图片长度减1
+                n = imgs.length - 1;
+            }
+            ;
+            for (let i = 0; i < imgs.length; i++) {
+                //移除active
+                imgs[i].classList.remove("active");
+                pagers[i].classList.remove("active");
+            }
+            //添加active
+            imgs[n].classList.add("active");
+            pagers[n].classList.add("active");
+        };
+        //进入事件
+        banner.onmouseenter = function () {
+            clearInterval(t);
+        };
+        //离开事件
+        banner.onmouseleave = function () {
+            t = setInterval(move, 3000);
+        };
+        let flag = true;
+        //右键添加单机事件
+        next.onclick = function () {
+            if (flag) {
+                flag = false;
+                move();
+            }
+            ;
+        };
+        //左键添加单机事件
+        prev.onclick = function () {
+            if (flag) {
+                flag = false;
+                n -= 2;
+                move();
+            }
+            ;
+        };
+        //监听动画
+        imgs.forEach(function (ele) {
+            ele.addEventListener("transitionend", function () {
+                flag = true;
+            })
+        })
+    }
+    //闪购部分效果
+    {
+        //获取所需元素
+        const prev = document.querySelector(".star_btn1");
+        const next = document.querySelector(".star_btn2");
+        const inner = document.querySelector(".buy-inner");
+        let n = 0;
+        //右键添加点击事件
+        next.onclick = function () {
+            n++;
+            //移除disable
+            prev.classList.remove("disable");
+            if (n === 2) {
+                //添加disable
+                this.classList.add("disable");
+            }
+            if (n === 3) {
+                n = 2;
+                return;
+            }
+            //图片的移动
+            inner.style.marginLeft = -992 * n + "px";
+        }
+        //左键添加点击事件
+        prev.onclick = function () {
+            n--;
+            //移除disable
+            next.classList.remove("disable");
+            if (n === 0) {
+                //添加disable
+                prev.classList.add("disable");
+            }
+            if (n === -1) {
+                n = 0;
+                return;
+            }
+            //图片的移动
+            inner.style.marginLeft = -992 * n + "px";
+        }
+    }
+    //返回顶部效果
+    {
+        //获取所需元素
+        let totop = document.querySelector(".xiezi1");
+        //添加点击事件
+        totop.onclick = function () {
+            //获取滚动条的高度
+            let st = document.documentElement.scrollTop;
+            //把函数赋给t
+            let t = setInterval(function () {
+                st -= 200;
+                if (st < 0) {
+                    //判断滚动条长度
+                    st = 0;
+                    //关闭t的执行
+                    clearInterval(t);
+                }
+                //当前滚动条高度等于变动后的高度
+                document.documentElement.scrollTop = st;
+            }, 25);
+        }
+    }
+    //楼层跳转
+    {
+        //获取所需元素
+        let tips = document.querySelectorAll(".tips");
+        let containers = document.querySelectorAll(".container");
+        let flag = true;
+        //遍历文字
+        tips.forEach(function (ele, index) {
+            //添加点击事件
+            ele.onclick = function () {
+                //内容距离顶部的高度
+                let ot = containers[index].offsetTop - 100;
+                //现在滚动条的高度
+                let now = document.documentElement.scrollTop;
+                // 定义速度
+                let speed = (ot - now) / 10;
+                //定义时间
+                let time = 0;
+                //调用函数
+                let t = setInterval(function () {
+                    //时间的增长
+                    time += 25;
+                    //现在的高度变化
+                    now += speed;
+                    //判断事件的最大值
+                    if (time === 250) {
+                        //清除t
+                        flag=true;
+                        clearInterval(t);
+                    }
+                    //现在滚动条高度等于变化后的高度
+                    document.documentElement.scrollTop = now;
+                }, 25)
+                for (let i = 0; i < tips.length; i++) {
+                    //移除active
+                    tips[i].classList.remove("active");
+                }
+                //添加active
+                tips[index].classList.add("active");
+            }
+        })
+        //监听滚动条
+        window.addEventListener("scroll", function () {
+            //获取滚动条高度
+            if (flag) {
+                let st = document.documentElement.scrollTop;
+                for (let i = 0; i < containers.length; i++) {
+                    //现在滚动条高度跟内容高度比大小
+                    if (st > containers[i].offsetTop - 200) {
+                        //for循环
+                        for (let i = 0; i < tips.length; i++) {
+                            //移除active
+                            tips[i].classList.remove("active");
+                        }
+                        //添加active，使文字随内容的变化而变化
+                        tips[i].classList.add("active");
+                    }
+                }
+            }
+        })
+    }
+    //标签云效果
+    {
+        let arr = ["html", "css", "javascript", "vue", "nodejs", "php", "mysql", "bootstrap", "express", "antd"];
+        //创建文档流
+        let docf = document.createDocumentFragment();
+        //定义随机颜色
+        let colorArr = ["6", "9", "C"];
+
+        //颜色函数
+        function getcolor() {
+            let str = "#";
+            for (let i = 0; i < 3; i++) {
+                //颜色随机
+                str += colorArr[Math.floor(Math.random() * colorArr.length)];
+            }
+            //返回值
+            return str;
+        }
+
+        //检查位置
+        function checkpos(l, t) {
+            for (let i = 0; i < pos.length; i++) {
+                let p = pos[i];
+                if (l > p.l - 100 && l < p.l + 100 && t > p.t - 100 && t < p.t + 100) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        let pos = [];
+        arr.forEach(function (value, index) {
+            //创建一个div
+            let newdiv = document.createElement("div");
+            let randomLeft, randomTop;
+            //do循环
+            do {
+                randomLeft = (window.innerWidth - 100) * Math.random();
+                randomTop = (window.innerHeight - 100) * Math.random();
+            } while (checkpos(randomLeft, randomTop));
+            //将值赋给pos数组；
+            pos.push({l: randomLeft, t: randomTop});
+            //定义行内样式集合
+            newdiv.style.cssText = `width:100px;height:100px;background:${getcolor()};
+        position:absolute;left:${randomLeft}px;top:${randomTop}px;border-radius:50%;text-align:center;
+        line-height:100px;color:#111;font-size:18px`;
+            //获取标签内容
+            newdiv.innerHTML = value;
+            //把newdiv添加到docf的最后
+            docf.appendChild(newdiv);
+
+        })
+        //获取元素
+        let scene = document.querySelector(".scene");
+        //把docf添加到scene
+        scene.appendChild(docf);
+    }
+    //留言板
+    {
+        //获取所需元素
+        let textarea = document.querySelector("#text");
+        let now = document.querySelector("#now");
+        //键盘按下事件
+        textarea.onkeydown = count;
+        //键盘抬起事件
+        textarea.onkeyup = count;
+
+        //定义函数
+        function count() {
+            //获取textarea的value值
+            let val = this.value;
+            //定义length长度
+            let length = val.length;
+            //判断可以输入的最大字数
+            if (length > 40) {
+                length = 40;
+                this.value = val.slice(0, 40);
+            }
+            now.innerHTML = length;
+        }
+
+        //获取所需元素
+        let submit = document.querySelector("#submit");
+        let showarea = document.querySelector("#showarea");
+        //添加点击事件
+        submit.onclick = submitHandler;
+
+        //定义回调函数
+        function submitHandler() {
+            //获取value值
+            let val = textarea.value;
+            //判断内容是否为空
+            if (val === "") {
+                alert("请输入内容");
+                return;
+            }
+            //value值为空值
+            textarea.value = "";
+            //标签内容为0
+            now.innerHTML = "0";
+            //创建p标签
+            let newMessage = document.createElement("p");
+            //获取newMessage内容
+            newMessage.innerHTML = val + "<span>删除</span>";
+            //把newMessage添加到showarea
+            showarea.appendChild(newMessage);
+        }
+
+        //页面键盘按下事件
+        document.onkeydown = function (e) {
+            //判断键码值
+            if (e.ctrlKey && e.keyCode === 13) {
+                console.log(submitHandler());
+            }
+        }
+        //showarea添加点击事件
+        showarea.onclick = function (e) {
+            //事件委派    获取目标事件源
+            let target = e.target;
+            //nodeName元素标签名
+            if (target.nodeName === "SPAN") {
+                //判断是否确定删除
+                if (confirm("确定删除吗")) {
+                    showarea.removeChild(target.parentNode);         //删除当前元素的父节点
+                }
+            }
+        }
+    }
+</script>
+</html>

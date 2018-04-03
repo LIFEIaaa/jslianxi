@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>回调函数</title>
+    <script>
+        function a() {                                    //回调函数
+            console.log(1);
+        }
+        function fun(f) {
+            f();
+        }
+        fun(a);
+       // setTimeout(function (){alert(1)},3000)
+
+
+        //函数：接收回调函数和数值作为参数 5
+        function  each(callback,num) {
+            for (var i=0;i<num;i++){
+                callback();
+            }
+        }
+        each(function (){alert(1)},5)
+    </script>
+</head>
+<body>
+
+</body>
+</html>

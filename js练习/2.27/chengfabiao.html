@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //正九九乘法表
+        for(var i=1;i<10;i++){
+            for(var j=1;j<=i;j++){
+                document.write(`${j}*${i}=${i*j}&nbsp;&nbsp;&nbsp;`)
+            }
+            document.write("<br>");
+        }
+
+        //倒九九乘法表
+        for(var i=1;i<10;i++){
+            for(var j=i;j<10;j++){
+                document.write(`${i}*${i}=${i*j<10?i*j+"&nbsp;&nbsp;":i*j}&nbsp;&nbsp;&nbsp;`);        //三元表达式
+            }
+            document.write("<br>");
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>欢迎 <span>×××××</span></h1>
+</body>
+<script>
+    let span=document.querySelector("span");
+    let cookieStr=document.cookie;
+    let arr=cookieStr.split("; ");
+    let obj={};
+    for(let i=0;i<arr.length;i++){
+        let data=arr[i].split("=");
+        obj[data[0]]=data[1];
+    }
+    span.innerHTML=obj.name;
+</script>
+</html>

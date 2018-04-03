@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .btn{
+            width: 150px;
+            height: 80px;
+            background: #f66;
+            border-radius: 40px;
+            position: absolute;
+            top:0;
+            left:0;
+            right: 0;
+            bottom: 0;
+            margin:auto;
+            text-align: center;
+            line-height: 80px;
+            color: #fff;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+        <div class="btn">开始</div>
+</body>
+<script>
+    var btnObj=document.querySelector(".btn");
+    var n=0;
+    btnObj.onclick=function () {
+        n++;
+        if(n%2===0){
+            btnObj.style.background="#f66";
+            btnObj.style.color="#fff";
+            btnObj.innerHTML="开始";
+        }else{
+        btnObj.style.background="blue";
+        btnObj.style.color="red";
+        btnObj.innerHTML="暂停";
+        }
+    }
+</script>
+</html>

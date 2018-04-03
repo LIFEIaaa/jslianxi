@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>正则语法</title>
+</head>
+<body>
+<!--required:必须填写   pattern:正则-->
+<form action="">
+    <input type="text" required pattern="\d{17}(\d|x)">
+    <!--<input type="text" required pattern="[1-9]\d{4,10}">-->
+    <input type="submit">
+</form>
+</body>
+<script>
+    // let str="     u      e           k          ";
+    // str=str.replace(/^\s*/,"");
+    // str=str.replace(/\s*$/,"");
+    // str=str.replace(/^\s*|\s*$/g,"");
+    // str=str.replace(/\s+/g,"");
+    // console.log(str);
+
+    //qq号的验证    5  11        10000
+    // let qqreg=/^[1-9]\d{4,10}$/;
+    // console.log(qqreg.test("10000"));
+    // console.log(qqreg.test("00000"));
+    // console.log(qqreg.test("100002345"));
+
+    //变量名的验证  开始必须是字母、下划线、$  后面可以跟$、字母、下划线、数字
+    // let namereg=/^[a-zA-Z\$_][a-zA-Z0-9_\$\d]*$/;
+    // console.log(namereg.test("adhfb$"));
+    // console.log(namereg.test("_adhfb_"));
+    // console.log(namereg.test("$2383A"));
+    // console.log(namereg.test("2383A"));
+    // console.log(namereg.test("*2383A"));
+
+    //验证十六进制颜色名字  #111  #fff    #123456   #abcdef    #aacc11    #FFF
+    // let colorreg=/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
+    // console.log(colorreg.test("#099"));
+    // console.log(colorreg.test("#adgz"));
+    // console.log(colorreg.test("#111"));
+    // console.log(colorreg.test("#aacc11"));
+    // console.log(colorreg.test("#eeee"));
+
+    //引用
+    // let str="uek1adjdnfskjdfskuek1";
+    // let reg=/^(?:hello)(uek\d).*\1/;
+    // console.log(reg.test(str));
+
+    //正向肯定预读
+    // let str="asuekuek1uek2uek3";
+    // let reg=/uek(?!\d)/g;
+    // console.log(reg.exec(str));
+
+    //字符串中使用正则的方法
+    let str="asdh1salkjdkefh";
+    // console.log(str.indexOf("a"));
+    console.log(str.search(/\d/));
+    console.log(str.match(/\d/));
+    console.log(str.split(/\d/));
+</script>
+</html>

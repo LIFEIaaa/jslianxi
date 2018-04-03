@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            font-size: 16px;
+        }
+        table,td{
+            border:1px solid #eee;
+            border-collapse: collapse;
+        }
+        td img{
+            width: 10vw;
+        }
+        .mask{
+            width: 100vw;
+            height: 100vh;
+            background: #eee;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+        .mask div{
+            width: 25vw;
+            height: 25vw;
+            background: #f99;
+            color:#fff;
+            text-align: center;
+            line-height: 25vw;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<h3><span></span>天气预报</h3>
+<table>
+    <thead>
+    <tr>
+        <td>日期</td>
+        <td>天气</td>
+        <td>图片</td>
+        <td>最低气温/最高气温</td>
+        <td>风力</td>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<input type="button" value="choose" id="choose">
+<div class="mask"></div>
+<script src="jquery-3.3.1.min.js"></script>
+<!--<script src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js"></script>-->
+<script>
+    $.getScript("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js",function () {
+        var data=remote_ip_info;
+        var city=data.city;
+        //getweather(city);
+    });
+    function getweather(city) {
+        $("h3 span").html(city);
+    $.ajax({
+        url: "http://api.jisuapi.com/weather/query?appkey=7b4e7af0bba359b5&city="+city,
+        dataType:"jsonp",
+        success:function (r) {
+            let data=r.result.daily;
+            let str="";
+            $.each(data,function (index,val) {
+                str+=`<tr>
+<td>${val.date}</td>
+<td>${val.day.weather}/${val.night.weather}</td>
+<td>
+<img src="weathercn02/${val.day.img}.png" alt="">
+<img src="weathercn/${val.night.img}.png" alt="">
+</td>
+<td>${val.day.temphigh}℃/${val.night.templow}℃</td>
+<td>${val.day.windpower}</td>
+</tr>`;
+            });
+            $("tbody").html(str);
+        }
+    })
+    }
+    $("#choose").click(function () {
+        $(".mask").show();
+        var data=[];   //存放所有数据
+        var province=[];   //存放所有省的数据
+        var city=[];    //存放某个省的所有市
+        $.ajax({
+            url:"http://api.jisuapi.com/weather/city?appkey=7b4e7af0bba359b5",
+            dataType:"jsonp",
+            success:function (r) {
+                data=r.result;
+                province=$.grep(data,function (val,index) {
+                    if(val.parentid==="0"){
+                        return true;
+                    }
+                })
+                let str="";
+                $.each(province,function (index,val) {
+                    str+=`<div class="province" id="${val.cityid}">${val.city}</div>`
+                })
+                $(".mask").html(str);
+            }
+        })
+        $(".mask").on("click",".province",function () {
+            var id=$(this).attr("id");
+            city=$.grep(data,function (val,index) {
+                if(val.parentid===id){
+                    return true;
+                }
+            })
+            $(".mask").empty();
+            let str="";
+            $.each(city,function (index,val) {
+                str+=`<div class="city">${val.city}</div>`
+            });
+            $(".mask").html(str);
+        });
+        $(".mask").on("click",".city",function () {
+            $(".mask").hide();
+            getweather($(this).html());
+        })
+    })
+</script>
+</body>
+</html>

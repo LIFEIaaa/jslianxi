@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件流</title>
+    <style>
+        #banner{
+            width: 1200px;
+            height: 500px;
+            background: red;
+            margin:0 auto;
+            position: relative;
+        }
+        .left{
+            width: 200px;
+            height: 500px;
+            background: yellow;
+            margin-left: 100px;
+        }
+        .middle{
+            width: 500px;
+            height: 500px;
+            background: blue;
+            position: absolute;
+            left: 300px;
+            top:0;
+            display: none;
+        }
+        .bigBox{
+            width: 800px;
+            height: 800px;
+            background: green;
+        }
+        .middleBox{
+            width: 500px;
+            height: 500px;
+            background: blue;
+        }
+        .smallBox{
+            width: 300px;
+            height: 300px;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+<div id="banner">
+    <div class="left"></div>
+    <div class="middle"></div>
+</div>
+<div class="bigBox">
+    <div class="middleBox">
+        <div class="smallBox"></div>
+    </div>
+</div>
+</body>
+<script>
+    //事件流
+    let banner=document.querySelector("#banner");
+    let left=document.querySelector(".left");
+    let middle=document.querySelector(".middle");
+    left.onmouseover=function () {
+        middle.style.display="block";
+    }
+    banner.onmouseleave=function () {
+        middle.style.display="none";
+    }
+    let big=document.querySelector(".bigBox");
+    // let middle=document.querySelector(".middleBox");
+    // let small=document.querySelector(".smallBox");
+    // // small.onclick=function () {
+    // //     alert("small");
+    // // }
+    // middle.onclick=function () {
+    //     alert("middle");
+    // }
+    // big.onclick=function () {
+    //     alert("big");
+    // }
+    // document.body.onclick=function () {
+    //     alert("body");
+    // }
+    // small.addEventListener("click",function () {
+    //     alert("small");
+    // },true)
+    // middle.addEventListener("click",function () {
+    //     alert("middle");
+    // },true)
+    // big.addEventListener("click",function () {
+    //     alert("big");
+    // },true)
+    //事件流
+    //当我们触发某个元素身上的事件的时候，当前元素的所有前辈元素一直到整个页面，
+    // 都会按照特定的顺序来响应这个事件，这种事件传播的方式叫做事件流
+    //事件流分类
+    //冒泡型事件流
+    //默认的事件流，不需要特定的方式去触发
+    //捕获型事件流
+    //需要通过特定的方式触发，添加事件监听，第三个参数设置为true
+    //捕获型事件流在触发之后，还是会进行冒泡的
+</script>
+</html>

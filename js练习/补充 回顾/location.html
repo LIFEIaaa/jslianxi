@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text">
+<input type="button" value="提交">
+<script>
+    //URL  统一资源定位符      URI     统一资源标示符
+    //URI包括URL
+    //协议  http      https
+    //域名     localhost        www.news.baidu.com
+    //端口号     :63342               默认80
+    //文件路径
+    //查询字符串     ?a=b&c=d&e=f
+    //锚链接       #aa
+
+    console.log(location.protocol);            //协议
+    console.log(location.hostname);           //域名
+    console.log(location.port);      //端口号
+    console.log(location.host);      //主机名称和端口号
+    console.log(location.pathname);   //路径
+    console.log(location.search);      //查询
+    console.log(location.hash);    //锚链接
+    console.log(location.href);      //页面跳转
+    //所有的这些属性都是可以设置的
+    document.body.onclick=function () {
+        // location.assign("demo2.html");          //加载新页面
+        //location.replace("demo2.html");       //加载新页面不产生历史记录
+       location.reload();     //重新加载当前站点的资源
+    }
+    window.onhashchange=function () {
+        console.log(1)
+    }
+</script>
+</body>
+</html>

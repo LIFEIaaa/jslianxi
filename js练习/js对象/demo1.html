@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //二维数组
+        // var arr = [[56, 87, 76, 98, 96], [90, 89, 56, 96, 79]];
+        // console.log(arr[0][2]);
+
+        //遍历
+        // for(var i=0;i<arr.length;i++){
+        //     // console.log(arr[i]);
+        //     for(j=0;j<arr[i].length;j++){
+        //         console.log(arr[i][j]);
+        //     }
+        // }
+
+        var arr2 = [34, 89, 78,[75, 90, 86], [56, 79, 86]];
+        for (var i = 0; i < arr2.length; i++) {
+            if (typeof  arr2[i] === "number") {
+                console.log(arr2[i]);
+            } else {
+                for (var j = 0; j < arr2[i].length; j++) {
+                    console.log(arr2[i][j]);
+                }
+            }
+        }
+
+
+        //混合型数组  遍历
+        // var arr3 = [34, 89, 78,[75, 90, 86], [56, [79, 86, 89]]];
+        // function each(arr) {
+        //     for (var i = 0; i <arr.length; i++) {
+        //         if (typeof  arr[i] === "number") {
+        //             console.log(arr[i]);
+        //         } else {
+        //             each(arr[i]);
+        //         }
+        //     }
+        // }
+        // each(arr3);
+    </script>
+</head>
+<body>
+</body>
+</html>

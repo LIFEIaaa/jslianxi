@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>留言板</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 300px;
+            height: 300px;
+            border: 1px solid #f2f2f2;
+            margin: 0 auto;
+            position: relative;
+            margin-top: 20px;
+        }
+
+        #text {
+            box-sizing: border-box;
+            width: 100%;
+            height: 100px;
+            border: none;
+            resize: none;
+            border-bottom: 1px solid #eee;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        #text:focus {
+            outline: none;
+        }
+
+        #count {
+            width: 100px;
+            height: 30px;
+            position: absolute;
+            right: 0;
+            top: 70px;
+            color: #999;
+            line-height: 30px;
+        }
+
+        #submit {
+            width: 50px;
+            height: 30px;
+            border-radius: 8px;
+            background: pink;
+            font-size: 14px;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 30px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        #showarea {
+            width: 100%;
+            height: 150px;
+            border-top: 1px solid #eee;
+            overflow-y: scroll;
+        }
+
+        #showarea h1 {
+            text-align: center;
+            font-size: 16px;
+        }
+
+        #showarea p {
+            width: 100%;
+            height: 30px;
+            background: skyblue;
+            position: relative;
+            line-height: 20px;
+        }
+
+        #showarea p span {
+            position: absolute;
+            right: 0;
+            top: 0;
+            margin: auto;
+            background: red;
+            cursor: pointer;
+            width: 50px;
+            height: 30px;
+            line-height: 30px;
+            color: #fff;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <textarea id="text" placeholder="请记录此刻的心情... "></textarea>
+    <div id="count">
+        <span>40</span>/<span id="now">0</span>
+    </div>
+    <div id="submit">提交</div>
+    <div id="showarea">
+        <h1>SHOW</h1>
+        <!--<p>内容-->
+            <!--<span>删除</span></p>-->
+    </div>
+</div>
+</body>
+<script>
+    let textarea = document.querySelector("#text");
+    let now = document.querySelector("#now");
+    let showarea = document.querySelector("#showarea");
+    textarea.onkeydown = count;
+    textarea.onkeyup = count;
+    function count() {
+        //value
+        let val = this.value;
+        let length = val.length;
+        if (length > 40) {
+            length = 40;
+            this.value = val.slice(0, 40);
+        }
+        now.innerHTML = length;
+    }
+
+    let submit = document.querySelector("#submit");
+    submit.onclick = submitHandler;
+    //获取data函数
+    function  getData() {
+        //有值转化为对象返回  否则输出空数组
+        return localStorage.message?JSON.parse(localStorage.message):[];
+    }
+    //保存data函数
+    function  saveData(data) {
+        //将值转换为字符串
+        localStorage.message=JSON.stringify(data);
+    }
+    //渲染函数
+    function  render() {
+        //获取data
+        let data=getData();
+        //恢复默认值
+        showarea.innerHTML="<h1>SHOW</h1>";
+        //遍历
+        data.forEach(function (val,index) {
+            //创建p元素
+            let p=document.createElement("p");
+            //连接删除标签span
+            p.innerHTML=val+"<span id=’+index+‘>删除</span>";
+            //把p赋给showarea
+            showarea.appendChild(p);
+        })
+    }
+    //函数自己运行
+    render();
+
+    function submitHandler() {
+        let val = textarea.value;
+        if (val === "") {
+            alert("请输入内容");
+            return;
+        }
+        textarea.value = "";
+        now.innerHTML = "0";
+        //获取最新数据
+        let data=getData();
+        data.push(val);
+        //保存内容
+        saveData(data);
+        //渲染
+        render();
+
+        // let newMessage = document.createElement("p");
+        // newMessage.innerHTML = val + "<span>删除</span>";
+        // showarea.appendChild(newMessage);
+    }
+    //按住ctrl+enter键返回值
+    // document.onkeydown = function (e) {
+    //     if (e.ctrlKey && e.keyCode === 13) {
+    //         console.log(submitHandler());
+    //     }
+    // }
+    //tagName标签名  nodeName元素标签名
+    showarea.onclick = function (e) {
+        let target = e.target;
+        if (target.nodeName === "SPAN") {
+            let data=getData();
+            //index=id
+            let index=target.id;
+            //删除内容
+            data.splice(index,1);
+            //保存data
+            saveData(data);
+            //渲染
+            render();
+            // if (confirm("确定删除吗")) {
+            //     showarea.removeChild(target.parentNode);         //删除当前元素的父节点
+            // }
+        }
+    }
+</script>
+</html>

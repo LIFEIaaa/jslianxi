@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数实现任意值累加</title>
+    <script>
+        //  函数      任意值累加和
+        // function  fn(num) {
+        //     var sum=0;
+        //     for(var i=1;i<=num;i++){
+        //         sum+=i;
+        //     }
+        //     return sum;
+        // }
+        // var res=fn(200);
+        // console.log(res);
+
+
+        //
+        // function  fn2() {
+        //     var sum=0;
+        //     for(var i=0;i<arguments.length;i++){
+        //         sum+=arguments[i];
+        //     }
+        //     return sum;
+        // }
+        // console.log(fn2(1,2,3,4,5));
+
+        function  fn3() {
+            var sum=0;
+            if(arguments.length===1){
+                for(var i=0;i<=arguments[0];i++){
+                    sum+=i;
+                }
+            }else if(arguments.length>1){
+                for(var i=0;i<arguments.length;i++){
+                    sum+=arguments[i];
+                }
+            }
+            return sum;
+        }
+        console.log(fn3(8));
+        console.log(fn3(1,2,3,4,5,6));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

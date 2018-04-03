@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        ul {
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        li {
+            width: 100vw;
+            height: 15vh;
+            background: #ccc;
+            line-height: 15vh;
+            position: relative;
+            border-bottom: 1px solid #f2f2f2;
+        }
+
+        li div {
+            width: 20vw;
+            height: 15vh;
+            background: red;
+            text-align: center;
+            line-height: 15vh;
+            position: absolute;
+            right: -20vw;
+            top: 0;
+            color: #fff;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>1
+        <div>删除</div>
+    </li>
+</ul>
+<ul>
+    <li>2
+        <div>删除</div>
+    </li>
+</ul>
+<ul>
+    <li>3
+        <div>删除</div>
+    </li>
+</ul>
+<ul>
+    <li>4
+        <div>删除</div>
+    </li>
+</ul>
+<ul>
+    <li>5
+        <div>删除</div>
+    </li>
+</ul>
+<script src="hammer.js"></script>
+<script>
+    let lis = document.querySelectorAll("li");
+    // let hammerObj=new Hammer(lis);
+    lis.forEach(function (ele, index) {
+        let hammerObj=new Hammer(ele);
+        let max = window.innerWidth / 5;
+        let sx,movex;
+        let state="start";
+        let flag=true;            //手指离开之后要不要有动画
+       hammerObj.on("panstart",function (e) {
+            ele.style.transition="";
+            sx = e.center.x;
+       })
+        hammerObj.on("panmove",function (e) {
+            let cx = e.center.x;
+            movex = cx - sx;
+            if (movex > 0 && state==="start") {
+                flag=false;
+                return;
+            }
+            if(movex<0&&state==="end"){
+                flag=false;
+                return;
+            }
+            if (Math.abs(movex) > max) {
+                flag=false;
+                state=state==="start"?"end":"start";
+                if(state==="end"){
+                    ele.style.transform = `translateX(${-max}px)`;
+                }else{
+                    ele.style.transform = `translateX(0px)`;
+                }
+                return;
+            }
+            if(state==="end"){
+                movex=cx-sx-max;
+            }
+            flag=true;
+            ele.style.transform = `translateX(${movex}px)`;
+        })
+        hammerObj.on("panend",function () {
+            if(!flag){return};
+            ele.style.transition="all 0.5s";
+            if(Math.abs(movex)<max/2){
+                ele.style.transform="translateX(0)";
+                state="start";
+            }else{
+                ele.style.transform=`translateX(${-max}px)`;
+                state="end";
+            }
+        })
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            border: 10px solid #eee;
+            position: relative;
+        }
+        .demo{
+            width: 100px;
+            height: 100px;
+            background: red;
+            margin: 0 auto;
+            position: absolute;
+            padding: 10px;
+            margin-left: 100px;
+            top: 40px;
+            left: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+<div class="demo"></div>
+</div>
+<script src="jquery-3.3.1.min.js"></script>
+<script>
+    //offsetLeft    offsetTop
+    //位置
+    //offset    position
+    //console.log($(".demo").offset());     //返回结果是对象     获取元素距离文档的位置
+    //console.log($(".demo").offset().top);
+    //position     获取设置定位属性的元素的left、 top值
+    //console.log($(".demo").position());
+
+    //scrollLeft   scrollLeft()         scrollTop    scrollTop()
+    // $(window).scroll(function () {
+    //     console.log($(window).scrollTop());
+    // });
+
+    //尺寸
+    console.log($(".demo").width());
+    console.log($(".demo").innerWidth());
+    console.log($(".demo").outerWidth());             //offsetWidth
+    console.log($(".demo").outerWidth(true));       //包括外边距
+</script>
+</body>
+</html>

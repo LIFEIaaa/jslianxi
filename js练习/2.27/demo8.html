@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        for (var i = 0; i < 10; i++) {
+            if (i === 5) {
+                break;           //循环到当前位置
+                //continue;  //停止当前循环，继续往下循环
+            }
+            console.log(i);
+        }
+        console.log("循环结束");
+
+        //鸡兔同笼    36  个头       98条腿
+        //假设鸡的个数i     兔子j
+        loop1:
+            for (var i = 0; i <= 36; i++) {
+                for (var j = 0; j <= 36; j++) {
+                    if (i + j === 36 && (i * 2 + j * 4 === 98)) {
+                        console.log(`鸡的个数是${i}，兔子的个数是${j}`);
+                        break loop1;
+                    }
+                }
+            }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

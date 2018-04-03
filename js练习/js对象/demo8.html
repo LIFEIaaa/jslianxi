@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //ES6
+        //fill
+        var arr=new Array(10);
+        arr.fill(0);
+        console.log(arr);
+
+        //find  找到数组中的某个成员
+        var grade=[{name:"zhangsan",grade:90},{name:"lisi",grade:94},{name:"wangwu",grade:100}];
+        var obj=grade.find(function (val,index) {
+            if(val.grade===100){
+                return true
+            }
+        });
+        console.log(obj);
+
+        //findIndex   返回值：找到对象的索引值
+        var grade=[{name:"zhangsan",grade:90},{name:"lisi",grade:94},{name:"wangwu",grade:100}];
+        var obj=grade.findIndex(function (val,index) {
+            if(val.grade===100){
+                return true;
+            }
+        });
+        console.log(obj);
+
+        //copyWithin      在数组内部实现拷贝：数组当中的另外一些元素将当前元素替换掉
+        var arr=[1,2,3,4,5,6,7,8,9];
+        arr.copyWithin(0,6);            //数值含义：拷贝到那个位置     从哪个位置拷贝
+        console.log(arr);
+
+        //includes判断在数组中是否存在某一个值
+        console.log(arr.includes(9));
+
+        //keys
+        var inter=arr.keys();
+        console.log(inter.next());
+        console.log(inter.next());
+        console.log(inter.next());
+        console.log(inter.next());
+    </script>
+</head>
+<body>
+
+</body>
+</html>

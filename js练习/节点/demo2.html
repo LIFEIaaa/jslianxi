@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div class="box">
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+</body>
+<script>
+    let box=document.querySelector(".box");
+    let childNodes=box.childNodes;
+    //获取子元素
+    // let arr=[];
+    // childNodes.forEach(function(ele,index){
+    //     if(ele.nodeType===1){
+    //         arr.push(ele);
+    //     }
+    // })
+    // console.log(arr);
+
+   // let arr= Array.from(childNodes).filter(ele=>ele.nodeType===1);
+   // console.log(arr);
+
+    //document.creatElement(标签名)      创建元素节点
+    let divEle=document.createElement("div");
+    divEle.style.cssText="width:100px;height:100px;background:red";
+    //a.appendChild(b)            将b元素插入到a元素的内容之后
+    box.appendChild(divEle);
+</script>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数的作用域</title>
+    <script>
+        // var num=10;
+        // function  fn(num) {
+        //     num++;
+        //     console.log(num);
+        // }
+        // fn(10);
+        // console.log(num);
+
+
+        // function  fn1() {
+        //     console.log(1);
+        // }
+        // function  fn2() {
+        //     fn1();
+        // }
+        // fn2();
+
+
+        // function  fn1() {
+        //     function  fn2() {
+        //         console.log(2);
+        //     }
+        //     fn2();
+        // }
+        // fn1();
+
+        function  fn1() {
+            console.log(1);
+        }
+        function  fn2() {
+            function  fn3() {
+                fn1();
+            }
+            fn3();
+        }
+        fn2();
+
+
+        var num=10;
+        function  fn1() {
+            var num=20;
+            function  fn2() {
+                var num=30;
+                function  fn3() {
+                    var num=40;
+                    console.log(num);
+                }
+                fn3();
+            }
+            fn2();
+        }
+        fn1();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

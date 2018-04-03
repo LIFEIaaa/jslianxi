@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Math方法:三角函数</title>
+    <script>
+        // console.log(Math.sqrt(2));         //平方根
+        // console.log(Math.pow(2,3));          //求2的3次方
+        // console.log(2**10);       //ES6中求平方
+
+        //三角函数的处理
+        // console.log(Math.sin(Math.PI/6));     //求正弦值
+        // console.log(Math.PI);
+
+        // console.log(Math.cos());
+        //deg ：角度     rad：弧度
+        //360deg -----2PI
+        //180deg -----PI
+        //1deg----PI/180
+
+    </script>
+
+    <style>
+        .nav {
+            width: 100px;
+            height: 100px;
+            background: #ccc;
+            margin: auto;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 100px;
+            cursor: pointer;
+            font-size: 18px;
+            color: #fff;
+            user-select: none;
+        }
+        .item {
+            width: 100px;
+            height: 100px;
+            background: #33f;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+            transition: all 0.5s cubic-bezier(0.46, 0.26, 0.38, 0.85);
+        }
+    </style>
+</head>
+<body>
+<div class="nav">
+    <span class="menu">menu</span>
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+    <div class="item">4</div>
+    <div class="item">5</div>
+    <div class="item">6</div>
+    <div class="item">7</div>
+    <div class="item">8</div>
+</div>
+</body>
+<script>
+    let menu = document.querySelector(".menu");
+    let items = document.querySelectorAll(".item");
+    const R = 200;
+    let n = 0;
+    menu.onclick = function () {
+        n++;
+        if (n % 2 === 0) {
+            items.forEach(function (ele, index) {
+                let angle = index * Math.PI / 4;
+                let x = R * Math.cos(angle);
+                let y = R * Math.sin(angle);
+                var r = Math.floor(Math.random() * 155 + 100);
+                var g = Math.floor(Math.random() * 155 + 100);
+                var b = Math.floor(Math.random() * 155 + 100);
+                ele.style.left = x+ "px";
+                ele.style.top = y + "px";
+                ele.style.transform="scale(1,1)";
+                ele.style.background="rgba(255,182,193 ,1)";
+                ele.style.background = `rgb(${r},${g},${b})`;
+            })
+        } else {
+            items.forEach(function (ele, index) {
+                ele.style.left = 0;
+                ele.style.top = 0;
+                ele.style.transform="scale(0.3,0.3)";
+                ele.style.background="rgba(255,182,193 ,0.2)";
+            })
+        }
+    }
+</script>
+</html>

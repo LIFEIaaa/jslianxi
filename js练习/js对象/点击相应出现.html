@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+        }
+        .one{
+            background: red;
+            float: left;
+        }
+        .two{
+            background: yellow;
+            transition: all .5s;
+            float: left;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+        <div class="one"></div>
+        <div class="one"></div>
+        <div class="one"></div>
+        <div style="clear: both " ></div>
+        <div class="two"></div>
+        <div class="two"></div>
+        <div class="two"></div>
+</body>
+<script>
+    // var one=document.querySelector(".one");
+    // var two=document.querySelectorAll(".two");
+    // var n=0;
+    // console.log(two);
+    // one.onclick=function () {
+    //     n++;
+    //     if(n%2===0){
+    //         for(i=0;i<two.length;i++){
+    //             two[i].style.opacity=1;
+    //         }
+    //     }else{
+    //         for(i=0;i<two.length;i++){
+    //             two[i].style.opacity=0;
+    //         }
+    //     }
+    // }
+
+    var ones=document.querySelectorAll(".one");
+    var twos=document.querySelectorAll(".two");
+    for(var i=0;i<ones.length;i++){
+        ( function(a){
+        ones[a].onclick=function () {
+            for(var j=0;j<twos.length;j++){
+                twos[j].style.opacity=0;
+            }
+            twos[a].style.opacity=1;
+        }
+        })(i)
+    }
+</script>
+</html>

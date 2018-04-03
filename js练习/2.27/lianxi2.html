@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分支结构练习</title>
+    <script>
+        var grade=prompt("请输入成绩");
+        // console.log(typeof grade);   //字符串
+
+        //单路分支
+        // if(grade>=60){
+        //     console.log("成绩合格");
+        // }
+
+        //双路分支
+        // if(grade>=60){
+        //     console.log("成绩合格");
+        // }else{
+        //     console.log("成绩不合格");
+        // }
+
+        //多路分支
+        if(grade>=90&&grade<=100){
+            console.log("成绩优秀");
+        }else if(grade>=80&&grade<90){
+            console.log("成绩良好");
+        }else if(grade>=60&&grade<80){
+            console.log("成绩合格");
+        }else if(grade<60){
+            console.log("成绩不合格");
+        }else{
+            console.log("输入异常");
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

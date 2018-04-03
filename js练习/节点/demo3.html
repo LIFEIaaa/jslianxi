@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 300px;
+            min-height: 300px;
+            background-color: blue;
+            margin:0 auto;
+        }
+        .item{
+            width: 80px;
+            height: 80px;
+            background: red;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="one" title="123">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+</div>
+</body>
+<script>
+    let box=document.querySelector(".box");
+    let item1=box.firstElementChild;
+    let item3=box.lastElementChild;
+    let newdiv=document.createElement("div");
+    newdiv.className="item";
+    newdiv.innerHTML="4";
+    // box.appendChild(newdiv);
+
+    //a.insertBefore(b,c);             把b元素插入到a的子元素c前面
+    box.insertBefore(newdiv,item1);
+    box.insertBefore(item3,newdiv);
+
+    //creatDocumentFragment()   创建一个文档片段
+    let f=document.createDocumentFragment();
+    for(let i=0;i<100;i++){
+        let newdiv=document.createElement("div");
+        newdiv.className="item";
+        f.appendChild(newdiv);
+    }
+    document.body.appendChild(f);
+
+    //a.replaceChild(b,c);     把a当中的c元素替换为b元素
+    let newdiv2=document.createElement("div");
+    newdiv2.className="item";
+    newdiv2.innerHTML="5";
+    box.replaceChild(newdiv2,item1);
+
+    //a.removeChild(b)         把a的子元素b移除掉
+
+    let obj={name:"zhangsan"};
+    let obj2=obj;
+    obj2.name="lisi";    //传址
+    console.log(obj.name);      //lisi
+
+    let a=1;
+    let b=a;
+    b=2;                   //传值
+    console.log(a);        //1
+
+    //a.cloneNode ();           克隆一个a对象
+    let newbox=box.cloneNode(true);            //true  把内容一起克隆
+    document.body.appendChild(newbox);
+</script>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>参数</title>
+    <script>
+        function fn(rows) {
+            console.log(rows);
+            for (var i = 0; i < rows; i++) {
+                for (var j = 0; j <= rows - i; j++) {
+                    document.write("&nbsp;");
+                }
+                for (var j = 0; j <= i; j++) {
+                    document.write("*&nbsp;");
+                }
+                document.write("<br>");
+            }
+        }
+        fn(5);
+        fn(3);
+        fn(7);
+
+
+        function table(rows, cols,color) {
+            document.write("<table border='1' align='center'>");
+            for (var i = 0; i < rows; i++) {
+                if (i % 2 === 0) {
+                    document.write(`<tr bgcolor=${color}>`);
+                } else {
+                    document.write("<tr>");
+                }
+                for (var j = 0; j < cols; j++) {
+                    document.write(`<td>第${i + 1}行 第${j + 1}列</td>`);
+                }
+                document.write("</tr>");
+            }
+            document.write("</table>");
+        }
+        table(8,9,"red");
+        table(3,8,"blue");
+        table(5,6,"yellow");
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

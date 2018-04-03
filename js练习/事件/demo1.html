@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件</title>
+    <style>
+        .item{
+            width: 100px;
+            height: 100px;
+            background: greenyellow;
+            margin-bottom: 20px;
+            font-size: 30px;
+            text-align: center;
+            line-height: 100px;
+            transition: all 1s;
+        }
+        .item:nth-child(4):hover{
+            width: 200px;
+        }
+        .item:nth-child(10){
+            animation: rotate 3s;
+        }
+        @keyframes rotate {
+            0%{
+                transform: rotate(0);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <script>
+        //文档内容加载完成事件
+        window.onload=function () {
+            var items=document.querySelectorAll(".item");
+            console.log(items);
+        }
+    </script>
+</head>
+<body>
+<div>
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+    <div class="item">4</div>
+    <div class="item">5</div>
+    <div class="item">6</div>
+    <div class="item">7</div>
+    <div class="item">8</div>
+    <div class="item">9</div>
+    <div class="item" >10</div>
+    <input type="text" id="text">
+</div>
+
+</body>
+<script>
+    let divs=document.querySelectorAll(".item");
+    let input=document.querySelector("#text");
+    //鼠标点击事件  onclick
+    divs[0].onclick=function(){
+        console.log("这是一个鼠标点击事件");
+    }
+
+    //鼠标进入事件   onmouseenter
+    divs[1].onmouseenter=function(){
+        console.log("这是一个鼠标进入事件");
+    }
+    //鼠标离开事件 onmouseleave
+    divs[2].onmouseleave=function () {
+        console.log("这是一个鼠标离开事件");
+    }
+    //添加监听事件   addEventListener();
+    divs[3].addEventListener("transitionend",function(){
+        console.log("这是一个监听事件");
+    })
+    //滚动事件     window.onscroll
+    window.onscroll=function(){
+        console.log("这是一个滚动事件");
+    }
+    //改变事件    onchange             （改变内容并且失去焦点会触发）
+    input.onchange=function(){
+        console.log("这是改变事件");
+    }
+    //鼠标双击事件        ondblclick
+    divs[4].ondblclick=function(){
+        console.log("这是鼠标双击事件");
+    }
+    //鼠标按下事件      onmousedown
+    divs[5].onmousedown=function(){
+        console.log("这是鼠标按下事件");
+    }
+    //鼠标抬起事件     onmouseup
+    divs[6].onmouseup=function () {
+        console.log("这是鼠标抬起事件");
+    }
+    //鼠标移动事件    onmousemove
+    divs[7].onmousemove=function(){
+        console.log("这是鼠标移动事件");
+    }
+    //鼠标进入事件    onmouseover
+    divs[8].onmouseover=function () {
+        console.log("这是鼠标进入事件");
+    }
+    //鼠标离开事件   onmouseout
+    divs[8].onmouseout=function () {
+        console.log("这是鼠标离开事件");
+    }
+    //滚轮事件   onwheel
+    divs[9].onwheel=function () {
+        console.log("这是滚轮事件");
+    }
+
+    //事件  用户对于浏览器的操作   浏览器自身行为
+
+    //表单控件  onchange        onfocus       onblur
+    input.onfocus=function(){
+        console.log("获得焦点事件");
+    }
+    input.onblur=function(){
+        console.log("失去焦点事件");
+    }
+
+    //键盘事件
+    //window     document   body    可以输入的元素
+    window.onkeydown=function(){
+        console.log("键盘按下事件");
+    }
+    window.onkeypress=function () {
+        console.log("键盘按压事件");
+    }
+    window.onkeyup=function () {
+        console.log("键盘抬起事件");
+    }
+
+        //动画结束事件
+    divs[9].addEventListener("animationend",function () {
+        console.log("动画效果结束");
+    })
+</script>
+</html>

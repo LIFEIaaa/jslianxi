@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table{
+            width: 600px;
+            height: auto;
+            margin: 0 auto;
+            text-align: center;
+            border: 1px solid #eee;
+            border-collapse: collapse;
+        }
+        td,th{
+            border-bottom: 1px solid #eee;
+            height: 30px;
+        }
+        thead{
+            background: #ccc;
+        }
+        .del{
+            color: red;
+            cursor: pointer;
+        }
+        .add{
+            cursor: pointer;
+        }
+        td input{
+            margin: 0;
+            padding: 0;
+            border: 0;
+            width: 100%;
+            height: 100%;
+            background: yellow;
+            text-align: center;
+        }
+        td,th{
+            width: 150px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="4" class="add">+</td>
+    </tr>
+    </tfoot>
+</table>
+</body>
+<script>
+    let tbody = document.querySelector("tbody");
+    let add = document.querySelector(".add");
+
+    function getData() {
+        return localStorage.table?JSON.parse(localStorage.table):[];
+    }
+
+    function saveData(data) {
+        localStorage.table=JSON.stringify(data);
+    }
+    function  render() {
+        let data=getData();
+        let str="";
+        data.forEach(function (val,index) {
+            str+= `
+                <tr id=${index}>
+                    <td class="name">${val.name}</td>
+                    <td class="age">${val.age}</td>
+                    <td class="sex">${val.sex}</td>
+                    <td class="del">删除</td>
+                </tr>
+            `;
+        })
+        tbody.innerHTML=str;
+    }
+    render();
+    add.onclick = function () {
+        let data = getData();
+        data.push({name:"",age:"",sex:""});
+        saveData(data);
+        render();
+    }
+
+    tbody.onclick=function (e) {
+        let target=e.target;
+        if(target.className==="del"){
+            let data=getData();
+            let index=target.parentNode.id;
+            data.splice(index,1);
+            saveData(data);
+            render();
+        }
+    }
+    tbody.ondblclick=function (e) {
+        let target=e.target;
+        if(target.className!=="del"){
+            let index=target.parentNode.id;
+            let attr=target.className;
+            let input=document.createElement("input");
+            let text=target.innerHTML;
+            target.innerHTML="";
+            input.value=text;
+            target.appendChild(input);
+            input.focus();
+            input.onblur=function () {
+                let val=this.value;
+                let data=getData();
+                data[index][attr]=val;
+                saveData(data);
+                render();
+            }
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>继承和原型</title>
+    <script>
+        function  Human() {
+            this.arms=2;
+            this.legs=2;
+            this.head=1;
+        }
+        var human=new Human();
+        console.log(human);
+        function  Student(_id,_className) {
+            this.studentId=_id;
+            this.className=_className
+        }
+        function  Teacher(_id,_position) {
+            this.teacherId=_id;
+            this.position=_position
+        }
+        Student.prototype=human;
+        Teacher.prototype=human;       //human被叫做 student的原型 teacher的原型
+        var student=new Student(1,"WUIW1711");
+        console.log(student);
+        var teacher=new Teacher(1,"布道师");
+        console.log(teacher);
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

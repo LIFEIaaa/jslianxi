@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        let obj = {
+            name: "zhangsan",
+            age: 18,
+            grades: {math: 90, english: 80},
+            friends: [{name: "a", age: 10}, {name: "b", age: 19}]
+        };
+        // let obj2={};
+        //浅拷贝
+        // for(let i in obj){
+        //     if(typeof obj[i]!=="object"){
+        //     obj2[i]=obj[i];
+        //     }else{
+        //         if(Array.isArray(obj[i])){
+        //             obj2[i]=[];
+        //         }else{
+        //             obj2={};
+        //         }
+        //         for(let j in obj[i]){
+        //             obj2[i][j]=obj[i][j]
+        //         }
+        //     }
+        // }
+        // obj2.math=100;
+        // obj2.name="lisi";
+        // console.log(obj);
+
+        //深拷贝
+        function deepCopy(o) {
+            let newobj;
+            if (Array.isArray(o)) {
+                newobj = [];
+            } else {
+                newobj = {};
+            }
+            for (let i in o) {
+                if (typeof o[i] !== "object") {
+                    newobj[i] = o[i];
+                } else {
+                    newobj[i] = deepCopy(o[i]);       //递归调用解决对象的深拷贝问题
+                }
+            }
+            return newobj;
+        }
+
+        let ojb2 = deepCopy(obj);
+    </script>
+    <style>
+        body {
+            height: 3000px;
+        }
+
+        div {
+            height: 100px;
+            background: blue;
+        }
+
+        .totop {
+            width: 30px;
+            height: 30px;
+            background: red;
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div class="totop"></div>
+<script src="jquery-3.3.1.min.js"></script>
+<script src="jquery.totop.js"></script>
+<script>
+    // $.fn.extend({fn:function () {
+    //         alert(1);
+    //     }}); //扩展到jQuery对象的原型身上
+    // $.extend();             //扩展到jQuery函数身上
+    // $.extend({say:function () {
+    //         alert("这是扩展的方法");
+    //     }})
+    // $.say();
+
+    $(".totop").totop();
+
+    //遍历
+    // $.each();
+    let arr = [11, 22, 33, 44, 55];
+    $.each(arr, function (index, value) {
+
+    })
+    // let obj={name:"zhangsan",age:19};
+    $.each(obj, function (key, value) {
+        console.log(value)
+    })
+    //$.map()
+    let newarr = $.map(arr, function (value, index) {
+        return value * 2;
+    })
+    console.log(newarr);
+    //过滤$.grep()
+    let newarr2 = $.grep(arr, function (value, index) {
+        return value < 30;
+    })
+    console.log(newarr2);
+    //扩展  $.extend()
+    // $.extend({fn:function () {
+    //     alert(1);
+    // }});
+    // $.fn();
+    //$.getRandom()
+    $.extend({
+        getRandom: function (arr) {
+            var l = arr.length;
+            var num = Math.random() * l;
+            var pos=Math.floor(num);
+            return arr[pos];
+        }
+    })
+    console.log($.getRandom(arr));
+</script>
+
+</body>
+</html>

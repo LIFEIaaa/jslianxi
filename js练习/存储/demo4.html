@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+    //window.localStorage
+    console.log(window);
+    console.log(localStorage);
+    //设置
+    localStorage.name="zhangsan";
+    localStorage.setItem("age",17);
+    localStorage["sex"]="man";
+    // localStorage.name="lisi";
+    //获取
+    // console.log(localStorage.name);
+    // console.log(localStorage["age"]);
+    // console.log(localStorage.getItem("sex"));
+    //删除
+    // localStorage.removeItem("name");
+    //清空
+    // localStorage.clear();
+    //遍历
+    for(let i=0;i<localStorage.length;i++){
+        console.log(localStorage.key(i));
+    }
+</script>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>闭包</title>
+    <script>
+        // function  fun() {
+        //     console.log(num);
+        //     var num=10;
+        //     num++;
+        //     console.log(num);
+        // }
+        // fun();
+        // fun();
+
+
+        //闭包
+        function  fun() {
+            var num=10;
+            function  inner() {
+                num++;
+                console.log(num);
+            }
+            return inner;
+        }
+        // var val=fun();
+        // console.log(val);
+        // val();
+
+        //三个闭包
+        fun()();           //11
+        fun()();            //11
+        fun()();            //11
+
+
+        //
+        var val=fun();
+        val();      //11
+        fun()();          //11
+        fun()();             //11
+        val();              //12
+    </script>
+</head>
+<body>
+
+</body>
+</html>

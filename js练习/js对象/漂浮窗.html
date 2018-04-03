@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>飘窗效果</title>
+    <style>
+        .floatingwindow {
+            width: 100px;
+            height: 100px;
+            border: 5px solid #000;
+            background: url("1.png");
+            position: fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+<div class="floatingwindow"></div>
+</body>
+<script>
+    let floatingwindow = document.querySelector(".floatingwindow");
+    //兼容性 获取浏览器的宽和高
+    //document.documentElement.clientWidth
+    //document.documentElement.clientHeight
+    let browserWidth = window.innerWidth;
+    let browserHeight = window.innerHeight;
+    let divWidth = floatingwindow.offsetWidth;
+    let divHeight = floatingwindow.offsetHeight;
+    let lefts = (browserWidth - divWidth) / 2;
+    let tops = (browserHeight - divHeight) / 2;
+    let startX=lefts;
+    let startY=tops;
+    floatingwindow.style.left = lefts + "px";
+    floatingwindow.style.top = tops + "px";
+    let maxtop = browserHeight - divHeight;
+    let maxleft = browserWidth - divWidth;
+    let speedX = 3;
+    let speedY = 3;
+    let t=setInterval(function () {
+        lefts += speedX;
+        tops += speedY;
+        if (tops > maxtop || tops < 0) {
+            speedY *= -1;
+        }
+        if (lefts > maxleft || lefts < 0) {
+            speedX *= -1;
+        }
+        floatingwindow.style.left = lefts + "px";
+        floatingwindow.style.top = tops + "px";
+    }, 25);
+    floatingwindow.onmouseenter=function(){
+        clearInterval(t);
+    }
+    floatingwindow.onclick=function(){
+        this.style.transition="all 1s";
+        this.style.transform="scale(1.5,1.5)";
+        this.style.left=startX+"px";
+        this.style.top=startY+"px";
+    }
+    floatingwindow.addEventListener("transitionend",function(){
+        this.onclick=function(){
+            this.style.display="none";
+        }
+    })
+</script>
+</html>

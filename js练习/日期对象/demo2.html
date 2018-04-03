@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>正则表达式</title>
+</head>
+<body>
+
+</body>
+<script>
+    //正则
+    // let reg=new RegExp("");     //regular      expression
+    // //一门语言   语法
+    // let reg2=/^uek/;      //在字符串中满足连接uek三个字母    开始位置必须是uek
+    // //str    includes()
+    // let str="uekhfjskdhfksjdhfkjsuek";
+    // //test()判断当前字符串是否匹配正则
+    // console.log(reg2.test(str));
+    // let reg3=/uek$/;          //结束位置必须是uek
+    // console.log(reg3.test(str));
+    // let reg4=/^uek$/;         //从开始到结束中间必须是uek
+    // console.log(reg4.test(str));
+
+    // let str="1 uek 5";
+    // let reg=/^\d\suek\s\d$/;    //开始和结束位置必须是数字和空格
+    // console.log(reg.test(str));
+
+    // let str="ueksdsjuekdjsbfuek";
+    // let reg=/uek/g;
+    // console.log(reg.exec(str));
+    // console.log(reg.exec(str));
+    // console.log(reg.exec(str));
+
+    let str="       u    e     k                ";
+    console.log(str);
+    str=str.replace(/\s/g,"");
+    console.log(str);
+</script>
+</html>

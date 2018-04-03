@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div class="demo" data-msg="1">
+    <a href="">baidu</a>
+</div>
+<div class="demo"></div>
+<div class="demo"></div>
+<div class="demo"></div>
+<input type="checkbox" name="aa" value="123">
+<script src="jquery-3.3.1.min.js"></script>
+<script>
+    //属性
+    //attr()
+    // $(".demo").addClass("aa");
+    // console.log($(".demo").attr("class"));
+    // console.log($(".demo").attr("id"));
+    // console.log($(".demo").attr("class","demo1"));
+
+    // $(".demo").attr({
+    //     class:"demo1",
+    //     id:"aa1"
+    // })
+
+    // $('.demo').attr("id",function (index,oldVal) {
+    //     return "a"+(index+1);
+    // })
+
+    let div=document.querySelector(".demo");
+    // //getAttribute()          setAttribute()
+    // console.log(div.getAttribute("class"));
+    // div.setAttribute("data-src","djhfusdjhf");
+
+    // console.log($(".demo").attr("data-msg"));
+    // $(".demo").attr("data-src","sdhjs");
+
+    //removeAttr()
+    $(".demo").removeAttr("data-msg");
+
+    //prop()
+    // $("input")
+    // $("[name=aa]")
+    // $(":checkbox").prop("checked",true);            //选中效果
+    // $(":checkbox").prop("disabled",true);             //未被选中
+
+    //text()     ====>  textContent只表示某一个元素的文字内容
+    //console.log(div.innerHTML);          //将div中的标签一并输出
+    //console.log(div.textContent);       //只获取文本内容
+
+    //div.textContent="123";         //将标签替换为123
+    // div.textContent="<span>123</span>";
+
+    // console.log($(".demo").text());
+    // $(".demo").text("<span>123</span>");              //将span作为标签文本内容输出
+
+    //val()
+    // console.log($(":checkbox").val());    //对应val属性
+</script>
+</body>
+</html>

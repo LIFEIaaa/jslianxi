@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background: red;
+            /*display: none;*/
+        }
+        .year{
+            width: 300px;
+            height: 100px;
+            border: 1px solid red;
+            margin: 0 auto;
+            line-height: 100px;
+            text-align: center;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="demo"></div>
+<div class="year">0</div>
+<input type="button" value="click">
+<script src="jquery-3.3.1.min.js"></script>
+<script>
+    //hide()        show()            toggle()
+    $(":button").click(function () {
+        // $(".demo").hide(10000);               //隐藏
+        // $(".demo").show(3000,"linear",function () {
+        //     $(this).css("background","blue");              //回调函数//this ：正在动画的元素
+        // });            //显示
+        //$(".demo").toggle(1000);
+        //$(".demo").slideDown(1000);     //展开
+        //$(".demo").slideUp(1000);      //收起
+        // $(".demo").slideToggle(1000);
+        //$(".demo").fadeOut();         //淡出
+        // $(".demo").fadeIn(1000);           //淡入
+        // $(".demo").fadeTo(1000,0.5);
+        // $(".demo").animate({width:500,height:300},1000);
+
+        let obj={t:0};
+        $(obj).animate({t:2018},{
+            duration:1000,
+            step:function () {
+                $(".year").html(Math.ceil(obj.t));
+            },
+            complete:function () {
+                $(".year").html(2018);
+            }
+        })
+    })
+</script>
+</body>
+</html>

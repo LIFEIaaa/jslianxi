@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>苏宁</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .container{
+            width: 1000px;
+            height: 200px;
+            border: 1px solid #eee;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .inner{
+            width:5000px;
+            height: 200px;
+            transition: all 1s;
+            margin-left: -1000px;
+        }
+        .inner li{
+            width: 200px;
+            height: 200px;
+            float: left;
+        }
+        .inner li a{
+            display: block;
+        }
+        .inner li img{
+            width: 199px;
+            height: 200px;
+        }
+        #prev,#next{
+            width: 40px;
+            height: 60px;
+            background: red;
+            position: absolute;
+            top:70px;
+            font-size: 20px;
+            color: #fff;
+            text-align: center;
+            line-height: 60px;
+            visibility: hidden;
+            cursor: pointer;
+            user-select: none;
+        }
+        #prev{
+            left: 0;
+        }
+        #next{
+            right: 0;
+        }
+        .container:hover #prev, .container:hover #next{
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <ul class="inner">
+        <li class="item"><a href=""><img src="../img/6.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="../img/7.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="../img/8.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="../img/9.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="../img/10.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="../img/djh1.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="../img/djh2.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="../img/djh3.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="../img/djh4.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="../img/djh5.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="../img/1.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="../img/2.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="../img/3.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="../img/4.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="../img/5.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="../img/6.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="../img/7.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="../img/8.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="../img/9.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="../img/10.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="../img/djh1.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="../img/djh2.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="../img/djh3.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="../img/djh4.webp" alt=""></a></li>
+        <li class="item"><a href=""><img src="../img/djh5.webp" alt=""></a></li>
+    </ul>
+    <div id="prev">&lt;</div>
+    <div id="next">&gt;</div>
+</div>
+</body>
+<script>
+    {
+        let container=document.querySelector(".container");
+        let inner=document.querySelector(".inner");
+        let prev=document.querySelector("#prev");
+        let next=document.querySelector("#next");
+        let n=1;         //1
+        let flag=true;
+        next.onclick=function () {
+            if(flag){
+                flag=false;
+                n++;
+                inner.style.transition="all 1s";
+                inner.style.marginLeft=-1000*n+"px";
+            }
+        }
+        prev.onclick=function () {
+            if(flag){
+                flag=false;
+                n--;
+                inner.style.transition="all 1s";
+                inner.style.marginLeft=-1000*n+"px";
+            }
+        }
+        inner.addEventListener("transitionend",function () {
+            flag=true;
+            if(n===4){
+                inner.style.transition="none";
+                inner.style.marginLeft="-1000px";
+                n=1;
+            }
+            if(n===0){
+                inner.style.transition="none";
+                inner.style.marginLeft="-3000px";
+                n=3;
+            }
+        })
+    }
+    // next.onclick=function(){
+    //     inner.style.transition="all 1s";
+    // }
+    // inner.addEventListener("transitionend",function () {
+    //      flag=true;
+    //     if(n===3){                            //n=4
+    //         inner.style.transition="none";
+    //         inner.style.marginLeft=0;                    //-1000px
+    //         n=0;                              //n=1
+    //     }
+    //      if(n===0){
+    //         inner.style.transition="none";
+    //          inner.style.marginLeft="-3000px";
+    //          n=3;
+    // }
+    // })
+</script>
+</html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        "use strict";          //触发严格模式
+        function fn() {
+            console.log(this);
+        }
+
+        fn();
+        // window.fn();
+
+        var obj = {
+            name: "zhangsan",
+            fn: function () {
+                console.log(this);
+            }
+        }
+        obj.fn();
+        // obj.fn.call(obj);
+    </script>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+</body>
+<script>
+    var div = document.querySelector("div");
+    div.onclick = function () {
+        console.log(this);
+    }
+
+    var obj={name:"lisi"};
+    function  fn(val1,val2) {
+        console.log(val1,val2)
+        console.log(this);
+    }
+    fn.call(obj,1,2);
+    fn.apply(obj,[1,2]);
+
+    // function  Human() {
+    //     this.arms=2;
+    //     this.legs=2;
+    //     console.log(this);
+    // }
+    // var someone=new Human();
+
+    //new
+    // var obj={};
+    // obj.__proto__=Human.prototype;
+    // Human.call(obj);
+    // someone=obj;
+
+    var name="lisi";
+    var obj={
+        name:"zhangsan",
+        o:{
+            name:"wangwu",
+            fn:function(){
+                console.log(this.name);
+            }
+        }
+    }
+    obj.o.fn();            //wangwu
+
+    var fn=obj.o.fn;
+    window.fn();            //lisi
+
+    obj.fn=obj.o.fn;
+    obj.fn();         //zhangsan
+
+    console.clear();          //清除控制台
+
+    class Human{
+        constructor(){
+            //Human类的构造函数
+            this.arms=2;
+            this.legs=2;
+            this.sleep=function () {
+                console.log("睡觉");
+            }
+        }
+        say(){
+            console.log("说话");
+        }
+    }
+    // var someone=new Human();              //实例化类
+    // console.log(someone);
+    class Student extends Human{          //继承Human类
+        constructor(id){
+            super();         //代指父类的构造函数
+            this.id=id;
+         }
+        walk(){
+            console.log("走路");
+        }
+    }
+    var student=new Student(1);
+    console.log(student);
+</script>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数特殊的调用  递归</title>
+    <script>
+        //递归调用
+        // function  fn(n) {
+        //     if(n===1){
+        //         return 1;                     //出口
+        //     }else{
+        //         return n*fn(n-1);
+        //     }
+        // }
+        // fn(5);
+
+        function  fn2(n) {
+            if(n===1){
+                console.log(1);
+            }else{
+                console.log(n);
+                fn2(n-1);
+            }
+        }
+        fn2(5);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

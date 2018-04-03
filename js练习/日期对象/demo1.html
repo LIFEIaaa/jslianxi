@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    距离五一还有
+    <span class="dates"></span>天
+    <span class="hours"></span>小时
+    <span class="minutes"></span>分钟
+    <span class="seconds"></span>秒
+</div>
+</body>
+<script>
+    // 对象
+    //      原生对象Array  String   JSON   Math  Boolean Object   Error   Function   RegExp(正则对象)     Date
+    //      宿主对象BOM   DOM   window  document      location  history  navigator  body  div  p    span a
+    // let date=new Date();    //当前的系统时间
+    // console.log(date);
+    // let future=new Date(2018,2,20,12,0,0);    //月份对应值0-11
+    // console.log(future);
+
+    // console.log(date.getYear());     //118
+    // console.log(date.getFullYear());   //2018
+    // console.log(date.getMonth());   //0-11
+    // console.log(date.getDate());  //20
+    // console.log(date.getDay());   //周二   0-6
+    // console.log(date.getHours());   //10     二十四小时制0-23
+    // console.log(date.getMinutes()); //39
+    // console.log(date.getSeconds());   //0-59
+    // console.log(date.getMilliseconds()); //毫秒数 0-999
+    // console.log(date.getTime());    //毫秒数 1970.1.1开始到现在的毫秒数
+    // console.log(date.getUTCHours());   //国际标准时间
+
+    //获取未来时间
+    // let newdate=new Date();
+    // newdate.setFullYear(2020);
+    // newdate.setMonth(0);
+    // newdate.setDate(1);
+    // newdate.setHours(0);
+    // newdate.setMinutes(0);
+    // newdate.setSeconds(0);
+    // newdate.setMilliseconds(0);
+    // newdate.setTime(0);
+    // console.log(newdate);
+
+    //1
+    // let target=new Date(2018,0,1,12,0,0);
+    // let time1=date.getTime();
+    // let time2=target.getTime();
+    // console.log(time1);
+    // console.log(time2);
+    // let duration=time1-time2;
+    // console.log(duration);
+    // let days=duration/(1000*60*60*24);
+    // console.log(days);
+
+    //2.倒计时
+    let dateEle=document.querySelector(".dates");
+    let hourEle=document.querySelector(".hours");
+    let minuteEle=document.querySelector(".minutes");
+    let secondEle=document.querySelector(".seconds");
+    let target=new Date(2018,4,1,0,0,0);
+    let targetTime=target.getTime();
+    setInterval(time,1000);
+    time();
+    function time() {
+        let now=new Date();
+        let nowTime=now.getTime();
+        let duration=targetTime-nowTime;
+        let days=Math.floor(duration/(1000*60*60*24));
+        dateEle.innerHTML=days;
+        let hours=Math.floor(duration/(1000*60*60)%24);
+        hourEle.innerHTML=hours;
+        let minutes=Math.floor(duration/(1000*60)%60);
+        minuteEle.innerHTML=minutes;
+        let seconds=Math.floor(duration/1000%60);
+        secondEle.innerHTML=seconds;
+    }
+</script>
+</html>

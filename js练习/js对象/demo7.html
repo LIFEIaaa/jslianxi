@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //ES5        ie8+
+        var arr = [11, 22, 33, 44, 55, 66];
+        var newarr = [];
+        Array.prototype.myForEach = function (callback) {
+            for (var i = 0; i < this.length; i++) {
+                callback(this[i], i);
+            }
+        };
+        arr.myForEach(function (val, index) {
+            console.log(val);
+            console.log(index);
+        });
+
+
+        //过滤filter
+        Array.prototype.myFilter = function (callback) {
+            var newarr = [];
+            for (var i = 0; i < this.length; i++) {
+                var r=callback(this[i], i);
+                if(r){
+                    newarr.push(this[i]);
+                }
+            }
+            return newarr;
+        };
+        var newarr = arr.filter(function (val) {
+            if (val < 40) {
+                return true;
+            }
+        });
+        console.log(newarr);
+
+        //映射map
+        Array.prototype.myMap=function (callback) {
+            var newarr=[];
+            for(var i=0;i<this.length;i++){
+               newarr.push(callback(this[i],i));
+            }
+            return newarr;
+        }
+        var newarr=arr.map(function (val,index) {
+            return val*val;
+        })
+        console.log(newarr);
+
+        //判断some       every
+        var arr=[56,67,78,89,78,90,34,78,55];
+        var hasFail=arr.some(function (val,index) {
+            if(val<60){
+                return true;
+            }
+        })
+        console.log(hasFail);            //判断是否有不及格的
+
+        var allSuccess=arr.every(function (val,index) {
+            if(val>60){
+                return true;
+            }
+        })
+        console.log(allSuccess);         //判断是否全部及格
+
+        //找数组中某个元素第一次出现的位置indexOf         和最后一次出现的位置lastIndexOf
+        console.log(arr.indexOf(78));
+        console.log(arr.lastIndexOf(78));
+        console.log(arr.indexOf(100));         //不存在的值  返回值为-1
+
+        //reverse
+        var arr=[1,2,3,4,5];
+        //arr.reverse();
+        console.log(arr);        //颠倒数组中每一个成员的排列顺序
+
+        //累加器reduce（从左往右）     reduceRight（从右往左）
+        //val1代表上一次运算的结果     val2代表当前正在遍历的值
+        var sum=arr.reduce(function (val1,val2) {
+            console.log(val1,val2);
+            return val1+val2;
+        });
+        console.log(sum);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

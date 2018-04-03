@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组</title>
+    <script>
+        var grade1 = 90;
+        var grade2 = 88;
+        var grade3 = 70;
+        var grade4 = 87;
+        var grade5 = 57;
+        var average = (grade1 + grade2 + grade3 + grade4 + grade5) / 5;
+        console.log(average);
+
+        //创建数组 array
+        var arr = [90, 88, 70, 87, 57];
+        // alert(arr);
+        // console.log(arr);
+        // console.log(arr[1 ]);
+        //下标
+
+        var arr2 = [];        //空数组
+        arr2[0] = 90;
+        arr2[1] = 88;
+        arr2[2] = 70;
+        arr2[3] = 87;
+        arr2[4] = 57;
+        // arr2[10]=99;
+        // console.log(arr2);
+
+        var sum = 0;
+        for (var i = 0; i < arr.length; i++) {
+            sum += arr[i];
+        }
+        var average = sum / arr.length;
+        console.log(average);
+
+        var arr3=new Array(78,80,90,88,79);
+        arr3[4]=100;
+        console.log(arr3);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

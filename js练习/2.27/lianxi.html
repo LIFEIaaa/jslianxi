@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>switch练习</title>
+    <script>
+        var num1=prompt("请输入数字1");
+        var num2=prompt("请输入数字2");
+        var ysf=prompt("请输入一个运算符");
+        console.log(num1);
+        console.log(num2);
+        console.log(ysf);
+        num1=parseFloat(num1);
+        num2=parseFloat(num2);
+        switch(ysf){
+            case"+":
+            case"加":
+                console.log(num1+num2);
+                break;
+            case"-":
+            case"减":
+                console.log(num1-num2);
+                break;
+            case"*":
+            case"乘":
+                console.log(num1*num2);
+                break;
+            case"/":
+            case"除":
+                console.log(num1/num2);
+                break;
+            default:
+                console.log("输入有误");
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

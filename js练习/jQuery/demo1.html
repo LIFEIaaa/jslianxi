@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background: red;
+            font-size: 30px;
+            color: #fff;
+            text-align: center;
+            line-height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</body>
+<script src="jquery-3.3.1.min.js"></script>
+<script>
+    // let divs=document.querySelectorAll("div");
+    // divs.forEach(function (ele,index) {
+    //     ele.style.background="blue";
+    //     ele.innerHTML=index+1;
+    //     ele.onclick=function () {
+    //         alert(index);
+    //     }
+    // })
+
+    //getComputedStyle          currentStyle
+    //addEventListener             attachEvent
+    //1.兼容旧的浏览器
+    //2.简化语法
+    //      获取元素更加方便
+    //      不管是单一元素还是集合  操作方式是一样的
+    // function $(selector) {
+    //     return document.querySelectorAll(selector);
+    // }
+    // let divs = $("div");
+
+    // 强大的查询功能
+    // 隐士的循环
+    // 链式调用
+    // function jQuery(selector) {
+    //     var obj=this.get(selector);
+    //    for(var i=0;i<obj.length;i++){
+    //        this[i]=obj[i];
+    //    }
+    //    this.length=obj.length;
+    // }
+    // jQuery.prototype={
+    //     get:function (selector) {
+    //         return document.querySelectorAll(selector);
+    //     },
+    //     each:function (callback) {
+    //         for(var i=0;i<this.length;i++){
+    //             callback(i,this[i]);
+    //         }
+    //     },
+    //     html:function (val) {
+    //         this.each(function (index,ele) {
+    //             ele.innerHTML=val;
+    //         })
+    //         return this;
+    //     },
+    //     css:function (attr,val) {
+    //         this.each(function (index,ele) {
+    //             ele.style[attr]=val;
+    //         })
+    //         return this;
+    //     },
+    //     click:function (callback) {
+    //         this.each(function (index,ele) {
+    //             ele.onclick=function () {
+    //                 callback();
+    //             }
+    //         })
+    //         return this;
+    //     }
+    // }
+    // function $(selector) {
+    //     var obj = new jQuery(selector);
+    //     return obj;
+    // }
+    $("div").html(123).css("background","pink");
+
+    //api    应用程序接口
+</script>
+</html>
